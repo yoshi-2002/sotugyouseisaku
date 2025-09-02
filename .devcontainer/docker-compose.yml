@@ -1,0 +1,51 @@
+version: '3.8'
+services:
+  java:
+    container_name: sotugyouseisaku-java
+    build:
+      context: ./java
+      dockerfile: Dockerfile
+    ports:
+      - "8081:8080"
+    volumes:
+      - "..:/sotugyouseisaku:cached"
+      - type: volume
+        source: sotugyouseisaku-gradle-cache
+        target: /root/.gradle
+    depends_on:
+      - postgres
+    networks:
+      - sotugyouseisaku-network
+    tty: true
+  postgres:
+    container_name: sotugyouseisaku-postgres
+    build:
+      context: ./postgres
+      dockerfile: Dockerfile
+    environment:
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: root
+      POSTGRES_DB: sotugyouseisaku_db
+    ports:
+      - "5433:5432"
+    networks:
+      - sotugyouseisaku-network
+    volumes:
+      - type: volume
+        source: sotugyouseisaku-db-volume
+        target: /var/lib/postgresql/data
+
+      - type: bind
+        source: ./postgres/db-init
+        target: /docker-entrypoint-initdb.d
+
+
+
+volumes:
+  sotugyouseisaku-db-volume:
+    driver: local
+  sotugyouseisaku-gradle-cache:
+    driver: local
+
+networks:
+  sotugyouseisaku-network:

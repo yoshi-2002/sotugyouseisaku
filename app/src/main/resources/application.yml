@@ -11,10 +11,12 @@ spring:
       mode: always             # SQL初期化を常に実行
       continue-on-error: false # エラーがあれば起動を中止する
       schema-locations:
-        - classpath:schema/product.sql
+        - classpath:schema/products_view.sql
         - classpath:schema/cart.sql
       data-locations:
-        - classpath:data/product.sql
+        - classpath:data/smartphone_holders.sql
+        - classpath:data/drive_recorders.sql
+        - classpath:data/car_navigation.sql
 
 logging:
   level:

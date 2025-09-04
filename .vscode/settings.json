@@ -1,0 +1,7 @@
+{
+    "editor.renderWhitespace": "all",
+    "workbench.colorCustomizations": {
+        "editorWhitespace.foreground": "#33ffff"
+    },
+    "java.compile.nullAnalysis.mode": "disabled",
+}

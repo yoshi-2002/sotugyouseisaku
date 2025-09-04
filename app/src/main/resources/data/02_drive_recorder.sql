@@ -1,4 +1,4 @@
-INSERT INTO online_shop.drive_recorders (name, description, price, stock)
+INSERT INTO online_shop.drive_recorder (name, description, price, stock)
 VALUES
 ('ドライブレコーダーA', 'フルHD画質対応', 9800.00, 15),
 ('ドライブレコーダーB', '前後カメラ付き', 15000.00, 10),

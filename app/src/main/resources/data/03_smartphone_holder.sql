@@ -1,4 +1,4 @@
-INSERT INTO online_shop.smartphone_holders (name, description, price, stock)
+INSERT INTO online_shop.smartphone_holder (name, description, price, stock)
 VALUES
 ('スマホホルダーA', 'シンプルなスマホホルダー', 1200.00, 50),
 ('スマホホルダーB', '360度回転可能', 1800.00, 30),

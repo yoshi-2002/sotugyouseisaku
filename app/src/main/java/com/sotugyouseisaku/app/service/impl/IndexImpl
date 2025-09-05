@@ -1,0 +1,37 @@
+package com.sotugyouseisaku.app.service.impl;
+
+import java.util.List;
+import java.util.stream.Collectors;
+
+import org.springframework.stereotype.Service;
+
+import com.sotugyouseisaku.app.dto.ProductViewDTO;
+import com.sotugyouseisaku.app.Record.ProductViewRecord;
+import com.sotugyouseisaku.app.repository.view.ProductViewMapper;
+import com.sotugyouseisaku.app.service.IndexService;
+
+import lombok.RequiredArgsConstructor;
+
+@Service
+@RequiredArgsConstructor
+public class IndexImpl implements IndexService {
+
+    private final ProductViewMapper productViewMapper;
+
+    @Override
+    public List<ProductViewDTO> findAllProducts() {
+        List<ProductViewRecord> records = productViewMapper.selectAllProducts();
+
+        // Record → DTO に変換
+        return records.stream()
+                .map(record -> new ProductViewDTO(
+                        record.getId(),
+                        record.getName(),
+                        record.getDescription(),
+                        record.getPrice(),
+                        record.getStock(),
+                        record.getCreatedAt()
+                ))
+                .collect(Collectors.toList());
+    }
+}

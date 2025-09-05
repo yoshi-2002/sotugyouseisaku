@@ -4,12 +4,12 @@ import java.time.LocalDateTime;
 import lombok.Data;
 
 @Data
-public class ProductRecord {
+public class ProductViewRecord {
     private int id;
     private String name;
     private String description;
     private double price;
     private int stock;
+    private String category;
     private LocalDateTime createdAt;
 }
-

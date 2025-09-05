@@ -1,4 +1,4 @@
-package com.sotugyouseisaku.app.repository.View;
+package com.sotugyouseisaku.app.repository.view;
 
 import java.util.List;
 import com.sotugyouseisaku.app.Record.ProductViewRecord;

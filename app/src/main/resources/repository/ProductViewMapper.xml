@@ -13,7 +13,8 @@
             description,
             price,
             stock,
-            created_at
+            created_at,
+            category
         FROM
             online_shop.product_view;
     </select>

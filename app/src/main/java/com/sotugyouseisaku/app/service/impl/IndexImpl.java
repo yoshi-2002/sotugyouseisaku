@@ -19,7 +19,7 @@ public class IndexImpl implements IndexService {
 
     @Override
     public ProductViewResultListDTO findAllProducts() {
-        List<ProductViewRecord> productViewRecords = productViewMapper.selectAllProducts();
+        List<ProductViewRecord> productViewRecords = productViewMapper.selectAllProductView();
 
         return ProductViewResultListDTO.builder()
                 .productViewList(productViewRecords)

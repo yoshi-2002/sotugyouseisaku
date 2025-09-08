@@ -12,8 +12,10 @@
       <tr>
         <th>ID</th>
         <th>商品名</th>
+        <th>商品説明</th>
         <th>価格</th>
         <th>在庫数</th>
+        <th>カテゴリ</th>
       </tr>
     </thead>
     <tbody>
@@ -21,8 +23,11 @@
       <tr th:each="product : ${productViewResultListDTO.productViewList}">
         <td th:text="${product.id}"></td>
         <td th:text="${product.name}"></td>
+        <td th:text="${product.description}"></td>
         <td th:text="${product.price}"></td>
         <td th:text="${product.stock}"></td>
+        <td th:text="${product.category}"></td> 
+
       </tr>
     </tbody>
   </table>

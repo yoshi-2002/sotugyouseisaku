@@ -10,6 +10,6 @@ public class ProductViewRecord {
     private String description;
     private double price;
     private int stock;
-    private String category;
     private LocalDateTime createdAt;
+    private String category;
 }

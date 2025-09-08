@@ -12,4 +12,5 @@ public class ProductViewRecord {
     private int stock;
     private LocalDateTime createdAt;
     private String category;
+    private String imageUrl;
 }

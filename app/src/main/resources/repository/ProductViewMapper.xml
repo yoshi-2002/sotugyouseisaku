@@ -14,7 +14,8 @@
             price,
             stock,
             created_at,
-            category
+            category,
+            image_url
         FROM
             online_shop.product_view;
     </select>

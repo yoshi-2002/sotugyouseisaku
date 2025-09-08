@@ -16,6 +16,7 @@
         <th>価格</th>
         <th>在庫数</th>
         <th>カテゴリ</th>
+        <th>画像</th>
       </tr>
     </thead>
     <tbody>
@@ -26,7 +27,11 @@
         <td th:text="${product.description}"></td>
         <td th:text="${product.price}"></td>
         <td th:text="${product.stock}"></td>
-        <td th:text="${product.category}"></td> 
+        <td th:text="${product.category}"></td>
+        <td>
+          <img th:if="${product.imageUrl != null}" th:src="${product.imageUrl}" alt="商品画像" width="100">
+          <span th:if="${product.imageUrl == null}">画像なし</span>
+        </td>
 
       </tr>
     </tbody>

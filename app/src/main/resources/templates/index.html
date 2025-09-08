@@ -17,6 +17,7 @@
       </tr>
     </thead>
     <tbody>
+      <!-- DTOの中のリストをループする -->
       <tr th:each="product : ${productViewResultListDTO.productViewList}">
         <td th:text="${product.id}"></td>
         <td th:text="${product.name}"></td>

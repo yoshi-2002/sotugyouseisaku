@@ -5,7 +5,8 @@ CREATE TABLE online_shop.drive_recorder (
     description TEXT,
     price NUMERIC(10,2) NOT NULL,
     stock INT DEFAULT 0,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    category VARCHAR(50)
 );
 
 COMMENT ON TABLE online_shop.drive_recorder IS 'ドライブレコーダー商品テーブル';

@@ -5,7 +5,8 @@ CREATE TABLE online_shop.smartphone_holder (
     description TEXT,
     price NUMERIC(10,2) NOT NULL,
     stock INT DEFAULT 0,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    category VARCHAR(50)
 );
 
 COMMENT ON TABLE online_shop.smartphone_holder IS 'スマホホルダー商品テーブル';

@@ -1,12 +1,12 @@
 DROP VIEW IF EXISTS online_shop.product_view;
 CREATE VIEW online_shop.product_view AS
-    SELECT id, name, description, price, stock, created_at, image_url, 'car_navigation' AS category
+    SELECT id, name, description, price, stock, created_at, category, image_url
     FROM online_shop.car_navigation
     UNION ALL
-    SELECT id, name, description, price, stock, created_at, NULL AS image_url, 'smartphone_holder' AS category
+    SELECT id, name, description, price, stock, created_at, category, NULL AS image_url
     FROM online_shop.smartphone_holder
     UNION ALL
-    SELECT id, name, description, price, stock, created_at, NULL AS image_url, 'drive_recorder' AS category
+    SELECT id, name, description, price, stock, created_at, category, NULL AS image_url
     FROM online_shop.drive_recorder;
 
 COMMENT ON VIEW online_shop.product_view IS '商品一覧表示用ビュー';

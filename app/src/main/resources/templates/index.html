@@ -2,39 +2,75 @@
 <html lang="ja" xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="UTF-8">
-  <title>商品一覧</title>
+  <title>オンラインショップ｜商品検索</title>
+  <link rel="stylesheet" th:href="@{/css/index.css}">
 </head>
+
 <body>
-  <h1>商品一覧</h1>
+  <h1>オンラインショップ</h1>
 
-  <table border="1">
-    <thead>
-      <tr>
-        <th>ID</th>
-        <th>商品名</th>
-        <th>商品説明</th>
-        <th>価格</th>
-        <th>在庫数</th>
-        <th>カテゴリ</th>
-        <th>画像</th>
-      </tr>
-    </thead>
-    <tbody>
-      <!-- DTOの中のリストをループする -->
-      <tr th:each="product : ${productViewResultListDTO.productViewList}">
-        <td th:text="${product.id}"></td>
-        <td th:text="${product.name}"></td>
-        <td th:text="${product.description}"></td>
-        <td th:text="${product.price}"></td>
-        <td th:text="${product.stock}"></td>
-        <td th:text="${product.category}"></td>
-        <td>
-          <img th:if="${product.imageUrl != null}" th:src="${product.imageUrl}" alt="商品画像" width="100">
-          <span th:if="${product.imageUrl == null}">画像なし</span>
-        </td>
+  <!-- 検索条件 -->
+  <header>
+    <div class="header-top">検索条件</div>
+  </header>
+  <div id="search-box">
+    <form th:action="@{/index}" id="productSearchForm" th:object="${productSearchForm}" method="get">
 
-      </tr>
-    </tbody>
-  </table>
+      <!-- カテゴリ選択（DISTINCTで取得したリストを利用） -->
+      <div class="list-and-name">
+        <label th:for="*{category}">商品カテゴリ</label>
+        <div class="pulldown-wrapper">
+          <select id="category" th:field="*{category}">
+            <option value="">選択してください</option>
+            <!-- カテゴリ一覧をループ表示 -->
+            <option th:each="cat : ${productSearchFormDTO.categoryRecords}" 
+            th:value="${cat.category}" 
+            th:text="${cat.category}"></option>    
+          </select>
+        </div>
+      </div>
+
+      <!-- 検索ボタン -->
+      <div class="search-button">
+        <button type="submit">検索</button>
+      </div>
+    </form>
+  </div>
+
+  <!-- 検索結果 -->
+  <header class="under-header">
+    <div class="header-left">検索結果</div>
+  </header>
+
+  <div class="result-box">
+    <table border="1">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>商品名</th>
+          <th>商品説明</th>
+          <th>価格</th>
+          <th>在庫数</th>
+          <th>カテゴリ</th>
+          <th>画像</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- 商品一覧をループ表示 -->
+        <tr th:each="product : ${productViewResultListDTO.productViewList}">
+          <td th:text="${product.id}"></td>
+          <td th:text="${product.name}"></td>
+          <td th:text="${product.description}"></td>
+          <td th:text="${product.price}"></td>
+          <td th:text="${product.stock}"></td>
+          <td th:text="${product.category}"></td>
+          <td>
+            <img th:if="${product.imageUrl != null}" th:src="${product.imageUrl}" alt="商品画像" width="100">
+            <span th:if="${product.imageUrl == null}">画像なし</span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </body>
 </html>

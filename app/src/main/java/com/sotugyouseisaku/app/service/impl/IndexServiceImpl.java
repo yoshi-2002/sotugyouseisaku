@@ -41,7 +41,7 @@ public class IndexServiceImpl  implements com.sotugyouseisaku.app.service.IndexS
     @Override
     public ProductViewResultListDTO getSearchResultListDTO(ProductSearchForm form) {
         // 入力条件（カテゴリ）に応じて View から商品リストを取得
-        List<ProductViewRecord> productViewRecords = productViewMapper.selectAllProductView();
+        List<ProductViewRecord> productViewRecords = productViewMapper.selectAllProductView(form);
 
         return ProductViewResultListDTO.builder()
                 .productViewList(productViewRecords)

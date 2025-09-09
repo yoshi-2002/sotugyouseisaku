@@ -5,8 +5,10 @@
 
 <mapper namespace="com.sotugyouseisaku.app.repository.view.ProductViewMapper">
 
-    <!-- product_view から全件取得 -->
-    <select id="selectAllProductView" resultType="com.sotugyouseisaku.app.Record.ProductViewRecord">
+    <!-- product_view から全件取得／カテゴリ絞り込みも対応 -->
+    <select id="selectAllProductView"
+            parameterType="com.sotugyouseisaku.app.form.ProductSearchForm"
+            resultType="com.sotugyouseisaku.app.Record.ProductViewRecord">
         SELECT
             id,
             name,
@@ -17,7 +19,13 @@
             category,
             image_url
         FROM
-            online_shop.product_view;
+            online_shop.product_view
+        <where>
+            <!-- カテゴリが選択されていれば絞り込み -->
+            <if test="category != null and category != ''">
+                AND category = #{category}
+            </if>
+        </where>
     </select>
 
 </mapper>

@@ -14,7 +14,7 @@
     <div class="header-top">検索条件</div>
   </header>
   <div id="search-box">
-    <form th:action="@{/index}" id="productSearchForm" th:object="${productSearchForm}" method="get">
+    <form th:action="@{/index}" id="productSearchForm" th:object="${productSearchForm}" method="post">
 
       <!-- カテゴリ選択（DISTINCTで取得したリストを利用） -->
       <div class="list-and-name">

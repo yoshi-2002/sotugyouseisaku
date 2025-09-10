@@ -26,6 +26,13 @@
             <if test="category != null and category != ''">
                 AND category = #{category}
             </if>
+
+            <!-- メーカーが選択されていれば絞り込み -->
+            <if test="maker != null and maker != ''">
+                AND maker = #{maker}
+            </if>
+
+            <!-- フリーワードが入力されていれば絞り込み -->
             <if test="keyword != null and keyword != ''">
                 AND (name LIKE CONCAT('%', #{keyword}, '%')
                     OR description LIKE CONCAT('%', #{keyword}, '%'))

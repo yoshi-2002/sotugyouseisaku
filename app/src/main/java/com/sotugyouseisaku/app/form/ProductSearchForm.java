@@ -14,6 +14,11 @@ public class ProductSearchForm {
     private String category;
 
     /**
+     * ユーザーが選択したメーカーを保持する
+     */
+    private String maker;
+
+    /**
      * フリーワード検索用
      */
     private String keyword;
@@ -23,5 +28,6 @@ public class ProductSearchForm {
      */
     public void giveProductSearchForm(ProductSearchFormDTO dto) {
         this.category = dto.getSelectedCategory();
+        this.maker = dto.getSelectedMaker();
     }
 }

@@ -17,6 +17,7 @@
             stock,
             created_at,
             category,
+            maker,
             image_url
         FROM
             online_shop.product_view

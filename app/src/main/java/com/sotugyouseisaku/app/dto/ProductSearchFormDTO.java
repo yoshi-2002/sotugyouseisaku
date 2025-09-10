@@ -4,6 +4,7 @@ import lombok.*;
 import java.util.List;
 
 import com.sotugyouseisaku.app.Record.ProductCategoryRecord;
+import com.sotugyouseisaku.app.Record.ProductMakerRecord;
 
 /**
  * 商品検索フォーム用のDTOクラス（キャッシュ用）
@@ -23,4 +24,14 @@ public class ProductSearchFormDTO {
      * 選択済みのカテゴリ
      */
     private String selectedCategory;
+
+    /**
+     * プルダウン用：メーカーのリスト
+     */
+    private List<ProductMakerRecord> makerRecords;
+
+    /**
+     * 選択済みのメーカー
+     */
+    private String selectedMaker;
 }

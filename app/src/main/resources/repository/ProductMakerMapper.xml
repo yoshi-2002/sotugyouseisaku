@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.sotugyouseisaku.app.repository.view.ProductMakerMapper">
+
+    <!-- product_view からメーカーを重複除去して取得 -->
+    <select id="selectDistinctMakers" resultType="com.sotugyouseisaku.app.Record.ProductMakerRecord">
+        SELECT DISTINCT maker
+        FROM online_shop.product_view
+        ORDER BY maker
+    </select>
+
+</mapper>

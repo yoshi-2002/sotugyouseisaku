@@ -1,12 +1,12 @@
 DROP VIEW IF EXISTS online_shop.product_view;
 CREATE VIEW online_shop.product_view AS
-    SELECT id, name, description, price, stock, created_at, category, image_url
+    SELECT id, name, description, price, stock, created_at, maker, category, image_url
     FROM online_shop.car_navigation
     UNION ALL
-    SELECT id, name, description, price, stock, created_at, category, NULL AS image_url
+    SELECT id, name, description, price, stock, created_at, maker, category, NULL AS image_url
     FROM online_shop.smartphone_holder
     UNION ALL
-    SELECT id, name, description, price, stock, created_at, category, NULL AS image_url
+    SELECT id, name, description, price, stock, created_at, maker, category, NULL AS image_url
     FROM online_shop.drive_recorder;
 
 COMMENT ON VIEW online_shop.product_view IS '商品一覧表示用ビュー';
@@ -16,4 +16,6 @@ COMMENT ON COLUMN online_shop.product_view.description IS '商品説明';
 COMMENT ON COLUMN online_shop.product_view.price IS '価格';
 COMMENT ON COLUMN online_shop.product_view.stock IS '在庫数';
 COMMENT ON COLUMN online_shop.product_view.created_at IS '作成日時';
-COMMENT ON COLUMN online_shop.product_view.category IS '商品カテゴリ（smartphone_holder, drive_recorder, car_navigation）';
+COMMENT ON COLUMN online_shop.car_navigation.maker IS 'メーカー名';
+COMMENT ON COLUMN online_shop.car_navigation.category IS '商品カテゴリ';
+COMMENT ON COLUMN online_shop.car_navigation.image_url IS '画像URL';

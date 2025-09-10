@@ -6,6 +6,7 @@ CREATE TABLE online_shop.drive_recorder (
     price NUMERIC(10,2) NOT NULL,
     stock INT DEFAULT 0,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    maker VARCHAR(50),
     category VARCHAR(50)
 );
 
@@ -16,3 +17,6 @@ COMMENT ON COLUMN online_shop.drive_recorder.description IS '商品説明';
 COMMENT ON COLUMN online_shop.drive_recorder.price IS '価格';
 COMMENT ON COLUMN online_shop.drive_recorder.stock IS '在庫数';
 COMMENT ON COLUMN online_shop.drive_recorder.created_at IS '作成日時';
+COMMENT ON COLUMN online_shop.car_navigation.maker IS 'メーカー名';
+COMMENT ON COLUMN online_shop.car_navigation.category IS '商品カテゴリ';
+COMMENT ON COLUMN online_shop.car_navigation.image_url IS '画像URL';

@@ -30,6 +30,14 @@
         </div>
       </div>
 
+       <!-- フリーワード検索 -->
+       <div class="list-and-name">
+        <label th:for="*{keyword}">フリーワード</label>
+        <div class="input-wrapper">
+          <input type="text" id="keyword" th:field="*{keyword}" placeholder="商品名や説明で検索">
+        </div>
+      </div>
+
       <!-- 検索ボタン -->
       <div class="search-button">
         <button type="submit">検索</button>

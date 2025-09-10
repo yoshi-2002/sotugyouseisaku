@@ -14,6 +14,11 @@ public class ProductSearchForm {
     private String category;
 
     /**
+     * フリーワード検索用
+     */
+    private String keyword;
+
+    /**
      * キャッシュからフォームに値を入れる
      */
     public void giveProductSearchForm(ProductSearchFormDTO dto) {

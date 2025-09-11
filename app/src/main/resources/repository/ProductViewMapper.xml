@@ -12,6 +12,7 @@
         SELECT
             id,
             name,
+            jyoutai,
             description,
             price,
             stock,
@@ -30,6 +31,11 @@
             <!-- メーカーが選択されていれば絞り込み -->
             <if test="maker != null and maker != ''">
                 AND maker = #{maker}
+            </if>
+
+             <!-- 状態（新品・中古）が選択されていれば絞り込み -->
+            <if test="jyoutai != null and jyoutai != ''">
+                AND jyoutai = #{jyoutai}
             </if>
 
             <!-- フリーワードが入力されていれば絞り込み -->

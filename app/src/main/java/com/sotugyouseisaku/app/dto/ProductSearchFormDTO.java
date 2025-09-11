@@ -4,6 +4,7 @@ import lombok.*;
 import java.util.List;
 
 import com.sotugyouseisaku.app.Record.ProductCategoryRecord;
+import com.sotugyouseisaku.app.Record.ProductJyoutaiRecord;
 import com.sotugyouseisaku.app.Record.ProductMakerRecord;
 
 /**
@@ -14,6 +15,16 @@ import com.sotugyouseisaku.app.Record.ProductMakerRecord;
 @NoArgsConstructor
 @AllArgsConstructor
 public class ProductSearchFormDTO {
+
+    /**
+     * プルダウン用：状態（新品・中古）のリスト
+     */
+    private List<ProductJyoutaiRecord> jyoutaiRecords;
+
+    /**
+     * 選択済みの状態（新品・中古）
+     */
+    private String selectedJyoutai;
 
     /**
      * プルダウン用：カテゴリのリスト

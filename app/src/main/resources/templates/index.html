@@ -43,6 +43,17 @@
           </select>
         </div>
       </div>
+      
+      <!-- 状態（新品・中古）選択ラジオボタン -->
+      <div class="list-and-name">
+        <label>状態</label>
+        <div class="radio-wrapper">
+          <label th:each="jRec : ${productSearchFormDTO.jyoutaiRecords}">
+            <input type="radio" th:field="*{jyoutai}" th:value="${jRec.jyoutai}">
+            <span th:text="${jRec.jyoutai}"></span>
+          </label>
+        </div>
+      </div>
 
        <!-- フリーワード検索 -->
        <div class="list-and-name">
@@ -70,6 +81,7 @@
         <tr>
           <th>ID</th>
           <th>商品名</th>
+          <th>状態</th>
           <th>商品説明</th>
           <th>価格</th>
           <th>在庫数</th>
@@ -83,6 +95,7 @@
         <tr th:each="product : ${productViewResultListDTO.productViewList}">
           <td th:text="${product.id}"></td>
           <td th:text="${product.name}"></td>
+          <td th:text="${product.jyoutai}"></td>
           <td th:text="${product.description}"></td>
           <td th:text="${product.price}"></td>
           <td th:text="${product.stock}"></td>

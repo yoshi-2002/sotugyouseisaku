@@ -9,9 +9,11 @@ import com.sotugyouseisaku.app.dto.ProductSearchFormDTO;
 import com.sotugyouseisaku.app.dto.ProductViewResultListDTO;
 import com.sotugyouseisaku.app.form.ProductSearchForm;
 import com.sotugyouseisaku.app.repository.view.ProductCategoryMapper;
+import com.sotugyouseisaku.app.repository.view.ProductJyoutaiMapper;
 import com.sotugyouseisaku.app.repository.view.ProductMakerMapper;
 import com.sotugyouseisaku.app.repository.view.ProductViewMapper;
 import com.sotugyouseisaku.app.Record.ProductCategoryRecord;
+import com.sotugyouseisaku.app.Record.ProductJyoutaiRecord;
 import com.sotugyouseisaku.app.Record.ProductMakerRecord;
 import com.sotugyouseisaku.app.Record.ProductViewRecord;
 import lombok.RequiredArgsConstructor;
@@ -23,6 +25,7 @@ public class IndexServiceImpl  implements com.sotugyouseisaku.app.service.IndexS
     private final ProductViewMapper productViewMapper;
     private final ProductCategoryMapper productCategoryMapper;
     private final ProductMakerMapper productMakerMapper;
+    private final ProductJyoutaiMapper productJyoutaiMapper;
 
     @Cacheable("productSearchFormDTO")
     @Override
@@ -32,11 +35,14 @@ public class IndexServiceImpl  implements com.sotugyouseisaku.app.service.IndexS
        List<ProductCategoryRecord> categoryRecords = productCategoryMapper.selectDistinctCategories();
        //メーカー
        List<ProductMakerRecord> makerRecords = productMakerMapper.selectDistinctMakers();
+       // 状態（新品・中古）
+       List<ProductJyoutaiRecord> jyoutaiRecords = productJyoutaiMapper.selectDistinctJyoutai(); 
 
         //DTOにまとめて返却
         return ProductSearchFormDTO.builder()
                 .categoryRecords(categoryRecords)
                 .makerRecords(makerRecords)
+                .jyoutaiRecords(jyoutaiRecords) 
                 .build();
     }
 
@@ -45,6 +51,7 @@ public class IndexServiceImpl  implements com.sotugyouseisaku.app.service.IndexS
     public ProductSearchFormDTO giveSearchFormDTO(ProductSearchForm form, ProductSearchFormDTO dto) {
         dto.setSelectedCategory(form.getCategory());
         dto.setSelectedMaker(form.getMaker());
+        dto.setSelectedJyoutai(form.getJyoutai());
         return dto;
     }
 

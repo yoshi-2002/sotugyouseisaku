@@ -7,6 +7,7 @@ import lombok.Data;
 public class ProductViewRecord {
     private int id;
     private String name;
+    private String jyoutai;
     private String description;
     private double price;
     private int stock;

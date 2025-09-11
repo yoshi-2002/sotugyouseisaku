@@ -85,6 +85,18 @@
         </div>
       </div>
 
+      <!-- 表示順 -->
+      <div class="list-and-name">
+        <label for="sortOrder">表示順</label>
+        <div class="pulldown-wrapper">
+          <select id="sortOrder" th:field="*{sortOrder}" onchange="this.form.submit()">
+            <option value="recommended" th:selected="${productSearchForm.sortOrder == 'recommended'}">オススメ順</option>
+            <option value="priceAsc" th:selected="${productSearchForm.sortOrder == 'priceAsc'}">価格昇順</option>
+            <option value="priceDesc" th:selected="${productSearchForm.sortOrder == 'priceDesc'}">価格降順</option>
+          </select>
+        </div>
+      </div>
+
       <!-- 検索ボタン -->
       <div class="search-button">
         <button type="submit">検索</button>
@@ -96,6 +108,8 @@
   <header class="under-header">
     <div class="header-left">検索結果</div>
   </header>
+
+
 
   <div class="result-box">
     <table border="1">

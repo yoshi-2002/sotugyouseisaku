@@ -52,6 +52,20 @@
                     OR description LIKE CONCAT('%', #{keyword}, '%'))
             </if>
         </where>
+
+        <!-- ここで表示順を切り替え -->
+        <choose>
+            <when test="sortOrder == 'priceAsc'">
+                ORDER BY price ASC
+            </when>
+            <when test="sortOrder == 'priceDesc'">
+                ORDER BY price DESC
+            </when>
+            <otherwise>
+                ORDER BY id DESC <!-- おすすめ順の例 -->
+            </otherwise>
+        </choose>
+
     </select>
 
 </mapper>

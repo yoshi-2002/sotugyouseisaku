@@ -39,11 +39,17 @@ public class ProductSearchForm {
     private String keyword;
 
     /**
+     * 表示順（オススメ順、価格昇順、価格降順）
+     */
+    private String sortOrder;
+
+    /**
      * キャッシュからフォームに値を入れる
      */
     public void giveProductSearchForm(ProductSearchFormDTO dto) {
         this.jyoutai = dto.getSelectedJyoutai();
         this.category = dto.getSelectedCategory();
         this.maker = dto.getSelectedMaker();
+        // this.sortOrder = dto.getSelectedSortOrder();
     }
 }

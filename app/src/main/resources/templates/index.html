@@ -85,6 +85,12 @@
         </div>
       </div>
 
+      <!-- 検索・クリアボタン -->
+      <div class="search-button">
+        <button type="submit">検索</button>
+        <button type="button" id="clearbutton">クリア</button>
+      </div>
+
       <!-- 表示順 -->
       <div class="list-and-name">
         <label for="sortOrder">表示順</label>
@@ -97,10 +103,6 @@
         </div>
       </div>
 
-      <!-- 検索ボタン -->
-      <div class="search-button">
-        <button type="submit">検索</button>
-      </div>
     </form>
   </div>
 
@@ -145,5 +147,9 @@
       </tbody>
     </table>
   </div>
+
+  <!-- JS 読み込み -->
+  <script type="text/javascript" th:src="@{/js/index.js}"></script>
+
 </body>
 </html>

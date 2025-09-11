@@ -24,6 +24,16 @@ public class ProductSearchForm {
     private String maker;
 
     /**
+     * ユーザーが入力した価格下限
+     */
+    private Integer priceMin;
+
+    /**
+     * ユーザーが入力した価格上限
+     */
+    private Integer priceMax;
+
+    /**
      * フリーワード検索用
      */
     private String keyword;

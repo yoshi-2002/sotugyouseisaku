@@ -38,6 +38,14 @@
                 AND jyoutai = #{jyoutai}
             </if>
 
+            <!-- 価格帯で絞り込み -->
+            <if test="priceMin != null">
+                AND price &gt;= #{priceMin}
+            </if>
+            <if test="priceMax != null">
+                AND price &lt;= #{priceMax}
+            </if>
+
             <!-- フリーワードが入力されていれば絞り込み -->
             <if test="keyword != null and keyword != ''">
                 AND (name LIKE CONCAT('%', #{keyword}, '%')

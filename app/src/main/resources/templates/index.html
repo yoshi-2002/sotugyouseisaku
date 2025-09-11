@@ -9,9 +9,29 @@
 <body>
   <h1>オンラインショップ</h1>
 
-  <!-- 検索条件 -->
+  <!-- ようこそ検索（フリーワードのみ） -->
   <header>
-    <div class="header-top">検索条件</div>
+    <div class="header-top">ようこそ</div>
+  </header>
+  <div id="welcome-search-box">
+    <form th:action="@{/index}" id="welcomeSearchForm" th:object="${productSearchForm}" method="post">
+      <div class="list-and-name">
+        <label th:for="*{keyword}">フリーワード</label>
+        <div class="input-wrapper">
+          <input type="text" id="keyword" th:field="*{keyword}" placeholder="商品名や説明で検索">
+        </div>
+      </div>
+
+      <!-- 検索ボタン -->
+      <div class="search-button">
+        <button type="submit">検索</button>
+      </div>
+    </form>
+  </div>
+
+  <!-- こだわり検索 -->
+  <header>
+    <div class="header-top">こだわり検索</div>
   </header>
   <div id="search-box">
     <form th:action="@{/index}" id="productSearchForm" th:object="${productSearchForm}" method="post">
@@ -55,11 +75,13 @@
         </div>
       </div>
 
-       <!-- フリーワード検索 -->
-       <div class="list-and-name">
-        <label th:for="*{keyword}">フリーワード</label>
-        <div class="input-wrapper">
-          <input type="text" id="keyword" th:field="*{keyword}" placeholder="商品名や説明で検索">
+      <!-- 価格帯 -->
+      <div class="list-and-name">
+        <label>価格帯</label>
+        <div class="price-wrapper">
+          <input type="number" th:field="*{priceMin}" placeholder="下限">
+          <span>～</span>
+          <input type="number" th:field="*{priceMax}" placeholder="上限">
         </div>
       </div>
 

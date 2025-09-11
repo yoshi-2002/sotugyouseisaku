@@ -9,12 +9,14 @@
 <body>
   <h1>オンラインショップ</h1>
 
-  <!-- ようこそ検索（フリーワードのみ） -->
+  <!-- 検索フォーム（フリーワード＋こだわり検索を統合） -->
   <header>
-    <div class="header-top">ようこそ</div>
+    <div class="header-top">商品検索</div>
   </header>
-  <div id="welcome-search-box">
-    <form th:action="@{/index}" id="welcomeSearchForm" th:object="${productSearchForm}" method="post">
+  <div id="search-box">
+    <form th:action="@{/index}" id="productSearchForm" th:object="${productSearchForm}" method="post">
+
+      <!-- フリーワード検索 -->
       <div class="list-and-name">
         <label th:for="*{keyword}">🔍何をお探しですか？</label>
         <div class="input-wrapper">
@@ -22,41 +24,25 @@
         </div>
       </div>
 
-      <!-- 検索ボタン -->
-      <div class="search-button">
-        <button type="submit">検索</button>
-      </div>
-    </form>
-  </div>
-
-  <!-- こだわり検索 -->
-  <header>
-    <div class="header-top">こだわり検索</div>
-  </header>
-  <div id="search-box">
-    <form th:action="@{/index}" id="productSearchForm" th:object="${productSearchForm}" method="post">
-
-      <!-- カテゴリ選択（DISTINCTで取得したリストを利用） -->
+      <!-- カテゴリ選択 -->
       <div class="list-and-name">
         <label th:for="*{category}">商品カテゴリ</label>
         <div class="pulldown-wrapper">
           <select id="category" th:field="*{category}">
             <option value="">選択してください</option>
-            <!-- カテゴリ一覧をループ表示 -->
             <option th:each="cat : ${productSearchFormDTO.categoryRecords}" 
-            th:value="${cat.category}" 
-            th:text="${cat.category}"></option>    
+                    th:value="${cat.category}" 
+                    th:text="${cat.category}"></option>    
           </select>
         </div>
       </div>
 
-      <!-- メーカー選択プルダウン -->
+      <!-- メーカー選択 -->
       <div class="list-and-name">
         <label th:for="*{maker}">メーカー</label>
         <div class="pulldown-wrapper">
           <select id="maker" th:field="*{maker}">
             <option value="">選択してください</option>
-            <!-- メーカー一覧をループ表示 -->
             <option th:each="makerRec : ${productSearchFormDTO.makerRecords}"
                     th:value="${makerRec.maker}"
                     th:text="${makerRec.maker}"></option>
@@ -64,7 +50,7 @@
         </div>
       </div>
       
-      <!-- 状態（新品・中古）選択ラジオボタン -->
+      <!-- 状態（新品・中古） -->
       <div class="list-and-name">
         <label>状態</label>
         <div class="radio-wrapper">
@@ -110,9 +96,6 @@
   <header class="under-header">
     <div class="header-left">検索結果</div>
   </header>
-
-
-
   <div class="result-box">
     <table border="1">
       <thead>
@@ -129,7 +112,6 @@
         </tr>
       </thead>
       <tbody>
-        <!-- 商品一覧をループ表示 -->
         <tr th:each="product : ${productViewResultListDTO.productViewList}">
           <td th:text="${product.id}"></td>
           <td th:text="${product.name}"></td>
@@ -150,6 +132,5 @@
 
   <!-- JS 読み込み -->
   <script type="text/javascript" th:src="@{/js/index.js}"></script>
-
 </body>
 </html>

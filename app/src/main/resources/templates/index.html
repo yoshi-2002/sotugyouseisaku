@@ -16,7 +16,7 @@
   <div id="welcome-search-box">
     <form th:action="@{/index}" id="welcomeSearchForm" th:object="${productSearchForm}" method="post">
       <div class="list-and-name">
-        <label th:for="*{keyword}">フリーワード</label>
+        <label th:for="*{keyword}">🔍何をお探しですか？</label>
         <div class="input-wrapper">
           <input type="text" id="keyword" th:field="*{keyword}" placeholder="商品名や説明で検索">
         </div>

@@ -4,6 +4,9 @@ import org.springframework.stereotype.Component;
 import com.sotugyouseisaku.app.dto.ProductSearchFormDTO;
 import lombok.Data;
 
+// バリデーション用
+import jakarta.validation.constraints.Size;
+
 @Component
 @Data
 public class ProductSearchForm {
@@ -36,6 +39,7 @@ public class ProductSearchForm {
     /**
      * フリーワード検索用
      */
+    @Size(max = 10, message = "キーワードは10文字以内で入力してください") // 10文字以下のバリデーション
     private String keyword;
 
     /**

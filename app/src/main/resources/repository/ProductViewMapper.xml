@@ -12,7 +12,7 @@
         SELECT
             id,
             name,
-            alias,
+            <!-- alias, -->
             jyoutai,
             description,
             price,
@@ -52,7 +52,7 @@
                 AND (
                     name LIKE CONCAT('%', #{keyword}, '%')
                     OR description LIKE CONCAT('%', #{keyword}, '%')
-                    OR alias LIKE CONCAT('%', #{keyword}, '%')
+                    <!-- OR alias LIKE CONCAT('%', #{keyword}, '%') -->
                 )
             </if>
         </where>

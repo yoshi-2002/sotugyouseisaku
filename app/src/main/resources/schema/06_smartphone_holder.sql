@@ -2,7 +2,7 @@ DROP TABLE IF EXISTS online_shop.smartphone_holder;
 CREATE TABLE online_shop.smartphone_holder (
     id SERIAL PRIMARY KEY,
     name VARCHAR(100) NOT NULL,
-    alias_id INT, -- 外部キーで略称マスタと接続
+    -- alias_id INT, -- 外部キーで略称マスタと接続
     jyoutai VARCHAR(10) NOT NULL,
     description TEXT,
     price NUMERIC(10,2) NOT NULL,

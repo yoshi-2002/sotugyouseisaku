@@ -13,14 +13,20 @@ spring:
       schema-locations:
         - classpath:schema/01_product_view_sakujyo.sql
         - classpath:schema/02_car_navigation.sql
-        - classpath:schema/03_drive_recorder.sql
-        - classpath:schema/04_smartphone_holder.sql
-        - classpath:schema/05_product_view.sql
+        - classpath:schema/03_car_navigation_alias.sql
+        - classpath:schema/04_drive_recorder.sql
+        - classpath:schema/05_drive_recorder_alias.sql
+        - classpath:schema/06_smartphone_holder.sql
+        - classpath:schema/07_smartphone_holder_alias.sql
+        - classpath:schema/08_product_view.sql
         # - classpath:schema/05_cart.sql
       data-locations:
         - classpath:data/01_car_navigation.sql
-        - classpath:data/02_drive_recorder.sql
-        - classpath:data/03_smartphone_holder.sql
+        - classpath:data/02_car_navigation_alias.sql
+        - classpath:data/03_drive_recorder.sql
+        - classpath:data/04_drive_recorder_alias.sql
+        - classpath:data/05_smartphone_holder.sql
+        - classpath:data/06_smartphone_holder_alias.sql
 
 logging:
   level:

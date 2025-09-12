@@ -12,6 +12,7 @@
         SELECT
             id,
             name,
+            alias,
             jyoutai,
             description,
             price,
@@ -48,8 +49,11 @@
 
             <!-- フリーワードが入力されていれば絞り込み -->
             <if test="keyword != null and keyword != ''">
-                AND (name LIKE CONCAT('%', #{keyword}, '%')
-                    OR description LIKE CONCAT('%', #{keyword}, '%'))
+                AND (
+                    name LIKE CONCAT('%', #{keyword}, '%')
+                    OR description LIKE CONCAT('%', #{keyword}, '%')
+                    OR alias LIKE CONCAT('%', #{keyword}, '%')
+                )
             </if>
         </where>
 

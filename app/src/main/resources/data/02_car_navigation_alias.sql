@@ -1,6 +1,6 @@
 -- カーナビ略称マスタ 初期データ
 INSERT INTO online_shop.car_navigation_alias (alias) VALUES
-('カーナビ'),
+('かーなび'),
 ('ナビ'),
 ('なび'),
 ('car navi'),

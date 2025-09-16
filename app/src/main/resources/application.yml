@@ -13,10 +13,12 @@ spring:
       schema-locations:
         - classpath:schema/01_product_view_sakujyo.sql
         - classpath:schema/02_product_table_sakujyo.sql
-        - classpath:schema/03_maker.sql
-        - classpath:schema/04_category.sql
-        - classpath:schema/05_product.sql
-        - classpath:schema/06_product_view.sql
+        - classpath:schema/03_category_alias_sakujyo.sql
+        - classpath:schema/04_maker.sql
+        - classpath:schema/05_category.sql
+        - classpath:schema/06_category_alias.sql
+        - classpath:schema/07_product.sql
+        - classpath:schema/08_product_view.sql
 
         # - classpath:schema/02_car_navigation.sql
         # - classpath:schema/03_car_navigation_alias.sql
@@ -27,9 +29,10 @@ spring:
         # - classpath:schema/08_product_view.sql
         # - classpath:schema/05_cart.sql
       data-locations:
-        - classpath:data/02_maker.sql
-        - classpath:data/03_category.sql
-        - classpath:data/04_product.sql
+        - classpath:data/01_maker.sql
+        - classpath:data/02_category.sql
+        - classpath:data/03_product.sql
+        - classpath:data/04_category_alias.sql
         # - classpath:data/01_car_navigation.sql
         # - classpath:data/02_car_navigation_alias.sql
         # - classpath:data/03_drive_recorder.sql

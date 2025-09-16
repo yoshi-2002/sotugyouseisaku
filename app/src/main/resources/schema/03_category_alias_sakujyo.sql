@@ -1,0 +1,1 @@
+DROP TABLE IF EXISTS online_shop.category_alias;

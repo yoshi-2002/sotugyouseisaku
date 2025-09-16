@@ -52,7 +52,7 @@
                 AND (
                     name LIKE CONCAT('%', #{keyword}, '%')
                     OR description LIKE CONCAT('%', #{keyword}, '%')
-                    <!-- OR alias LIKE CONCAT('%', #{keyword}, '%') -->
+                    OR alias_name LIKE CONCAT('%', #{keyword}, '%')
                 )
             </if>
         </where>

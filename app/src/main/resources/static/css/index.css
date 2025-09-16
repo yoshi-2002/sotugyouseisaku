@@ -1,0 +1,129 @@
+/* 全体のフォントと背景 */
+body {
+    font-family: 'Yu Gothic', sans-serif;
+    background-color: #f5f7fa;
+    margin: 0;
+    padding: 0;
+}
+
+/* ヘッダー */
+header {
+    background-color: #00bcd4;
+    color: white;
+    padding: 12px 20px;
+    font-size: 1.2em;
+    font-weight: bold;
+    border-bottom: 2px solid #0097a7;
+}
+
+/* 検索フォームボックス */
+#search-box {
+    background-color: #ffffff;
+    margin: 20px auto;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0px 2px 6px rgba(0,0,0,0.1);
+    max-width: 1000px;
+}
+
+/* 各フォーム行 */
+.list-and-name {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.list-and-name label {
+    width: 150px;
+    font-weight: bold;
+}
+
+.input-wrapper input,
+.pulldown-wrapper select,
+.price-wrapper input {
+    width: 200px;
+    padding: 6px 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+/* ラジオボタン */
+.radio-wrapper label {
+    margin-right: 15px;
+    font-weight: normal;
+}
+
+/* 価格帯 */
+.price-wrapper {
+    display: flex;
+    align-items: center;
+}
+
+.price-wrapper span {
+    margin: 0 10px;
+}
+
+/* 検索・クリアボタン */
+.search-button {
+    margin-top: 15px;
+}
+
+.search-button button {
+    background-color: #00bcd4;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-right: 10px;
+    font-weight: bold;
+}
+
+.search-button button:hover {
+    background-color: #0097a7;
+}
+
+#clearbutton {
+    background-color: #e0e0e0;
+    color: #333;
+}
+
+#clearbutton:hover {
+    background-color: #bdbdbd;
+}
+
+/* 検索結果 */
+.result-box {
+    background-color: #ffffff;
+    margin: 20px auto;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0px 2px 6px rgba(0,0,0,0.1);
+    max-width: 1000px;
+}
+
+.result-box table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.result-box th, .result-box td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+.result-box th {
+    background-color: #00bcd4;
+    color: white;
+}
+
+.result-box tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+/* 画像サイズ */
+.result-box img {
+    max-width: 100px;
+    border-radius: 4px;
+}

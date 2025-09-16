@@ -130,7 +130,7 @@
           <td th:text="${product.maker}"></td>
           <td th:text="${product.category}"></td>
           <td>
-            <img th:if="${product.imageUrl != null}" th:src="${product.imageUrl}" alt="商品画像" width="100">
+            <img th:if="${product.imageUrl != null}" th:src="${product.imageUrl}" alt="商品画像" width="300">
             <span th:if="${product.imageUrl == null}">画像なし</span>
           </td>
         </tr>

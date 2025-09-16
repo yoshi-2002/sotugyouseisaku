@@ -1,4 +1,3 @@
--- メーカーマスタ登録
 INSERT INTO online_shop.maker (name) VALUES
 ('イエローハット'),
 ('オートバックスデジタルイニシアチブ'),

@@ -1,5 +1,3 @@
-
-
 CREATE TABLE online_shop.category_alias (
     id SERIAL PRIMARY KEY,
     category_id INT NOT NULL,

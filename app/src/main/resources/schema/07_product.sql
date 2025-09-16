@@ -1,4 +1,3 @@
-DROP TABLE IF EXISTS online_shop.product;
 CREATE TABLE online_shop.product (
     id SERIAL PRIMARY KEY,
     name VARCHAR(100) NOT NULL,

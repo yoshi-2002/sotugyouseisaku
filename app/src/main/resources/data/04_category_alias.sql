@@ -215,6 +215,10 @@ INSERT INTO online_shop.category_alias (category_id, alias_name) VALUES (3, 'ス
 INSERT INTO online_shop.category_alias (category_id, alias_name) VALUES (3, 'すまほすたんど');
 INSERT INTO online_shop.category_alias (category_id, alias_name) VALUES (3, 'スマホホルダー');
 INSERT INTO online_shop.category_alias (category_id, alias_name) VALUES (3, 'すまほほるだ');
+INSERT INTO online_shop.category_alias (category_id, alias_name) VALUES (3, 'アイホン');
+INSERT INTO online_shop.category_alias (category_id, alias_name) VALUES (3, 'あいほん');
+INSERT INTO online_shop.category_alias (category_id, alias_name) VALUES (3, 'アンドロイド');
+INSERT INTO online_shop.category_alias (category_id, alias_name) VALUES (3, 'あんどろいど');
 INSERT INTO online_shop.category_alias (category_id, alias_name) VALUES (3, 'スマホ車載ホルダー');
 INSERT INTO online_shop.category_alias (category_id, alias_name) VALUES (3, 'すまほしゃさいほるだ');
 INSERT INTO online_shop.category_alias (category_id, alias_name) VALUES (3, 'スマホ車載スタンド');

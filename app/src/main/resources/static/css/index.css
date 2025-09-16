@@ -6,6 +6,19 @@ body {
     padding: 0;
 }
 
+/* サイトタイトル（横幅いっぱい・角丸なし・左寄せ・下に余白） */
+.site-title {
+    background-color: #ff9800;       
+    color: white;
+    padding: 15px 25px;
+    font-size: 2em;
+    font-weight: bold;
+    text-align: left;                
+    box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+    margin: 0 0 20px 0;              /* 下に余白を追加 */
+    width: 100%;                      
+}
+
 /* ヘッダー */
 header {
     background-color: #00bcd4;
@@ -14,16 +27,19 @@ header {
     font-size: 1.2em;
     font-weight: bold;
     border-bottom: 2px solid #0097a7;
+    border-radius: 8px;
+    margin-bottom: 10px;
 }
 
 /* 検索フォームボックス */
 #search-box {
     background-color: #ffffff;
-    margin: 20px auto;
+    margin: 20px; 
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0px 2px 6px rgba(0,0,0,0.1);
     max-width: 1000px;
+    width: calc(100% - 40px);
 }
 
 /* 各フォーム行 */
@@ -95,11 +111,12 @@ header {
 /* 検索結果 */
 .result-box {
     background-color: #ffffff;
-    margin: 20px auto;
+    margin: 20px; 
     padding: 20px;
-    border-radius: 8px;
+    border-radius: 8px; 
     box-shadow: 0px 2px 6px rgba(0,0,0,0.1);
     max-width: 1000px;
+    width: calc(100% - 40px);
 }
 
 .result-box table {
@@ -110,20 +127,5 @@ header {
 .result-box th, .result-box td {
     padding: 10px;
     text-align: left;
-    border-bottom: 1px solid #ddd;
-}
-
-.result-box th {
-    background-color: #00bcd4;
-    color: white;
-}
-
-.result-box tr:nth-child(even) {
-    background-color: #f2f2f2;
-}
-
-/* 画像サイズ */
-.result-box img {
-    max-width: 100px;
-    border-radius: 4px;
+    border-bottom: 1px solid #ddd
 }

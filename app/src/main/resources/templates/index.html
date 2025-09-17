@@ -21,7 +21,7 @@
       <div class="list-and-name">
         <label th:for="*{keyword}">🔍何をお探しですか？</label>
         <div class="input-wrapper">
-          <input type="text" id="keyword" th:field="*{keyword}" placeholder="商品名や説明で検索">
+          <input type="text" id="keyword" th:field="*{keyword}" placeholder="商品名や商品カテゴリで検索">
         </div>
         <div class="error" th:if="${#fields.hasErrors('keyword')}" th:errors="*{keyword}"></div>
       </div>
@@ -96,13 +96,13 @@
 
   <!-- 検索結果 -->
   <header class="under-header">
-    <div class="header-left">検索結果</div>
+    <div class="header-left">商品一覧</div>
   </header>
   <div class="result-box">
     <table border="1">
       <thead>
         <tr>
-          <th>ID</th>
+          <th>商品ID</th>
           <th>商品名</th>
           <th>状態</th>
           <th>商品説明</th>
@@ -111,6 +111,7 @@
           <th>メーカー</th>
           <th>カテゴリ</th>
           <th>画像</th>
+          <th>購入</th>
         </tr>
       </thead>
       <tbody>
@@ -130,8 +131,14 @@
           <td th:text="${product.maker}"></td>
           <td th:text="${product.category}"></td>
           <td>
-            <img th:if="${product.imageUrl != null}" th:src="${product.imageUrl}" alt="商品画像" width="100">
+            <img th:if="${product.imageUrl != null}" th:src="${product.imageUrl}" alt="商品画像" width="300">
             <span th:if="${product.imageUrl == null}">画像なし</span>
+          </td>
+          <td>
+            <form th:action="@{/cart/add}" method="post">
+              <input type="hidden" th:name="productId" th:value="${product.id}">
+              <button type="submit">カートへ追加</button>
+            </form>
           </td>
         </tr>
       </tbody>

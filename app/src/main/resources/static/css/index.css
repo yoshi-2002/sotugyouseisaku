@@ -15,12 +15,12 @@ body {
     font-weight: bold;
     text-align: left;                
     box-shadow: 0 2px 6px rgba(0,0,0,0.2);
-    margin: 0 0 20px 0;              /* 下に余白を追加 */
+    margin: 0 0 20px 0;
     width: 100%;                      
 }
 
-/* ヘッダー */
-header {
+/* 商品検索ヘッダー */
+header .header-top {
     background-color: #00bcd4;
     color: white;
     padding: 12px 20px;
@@ -28,18 +28,23 @@ header {
     font-weight: bold;
     border-bottom: 2px solid #0097a7;
     border-radius: 8px;
+    margin-left: 20px;
+    margin-right: 20px;
     margin-bottom: 10px;
+    box-sizing: border-box;
 }
 
-/* 検索フォームボックス */
+/* 検索フォームボックス（商品検索だけ小さく） */
 #search-box {
     background-color: #ffffff;
-    margin: 20px; 
+    margin-left: 20px;
+    margin-right: 20px;
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0px 2px 6px rgba(0,0,0,0.1);
-    max-width: 1000px;
-    width: calc(100% - 40px);
+    max-width: 800px;  /* 商品検索のみ小さく制限 */
+    width: 100%;
+    box-sizing: border-box;
 }
 
 /* 各フォーム行 */
@@ -95,10 +100,6 @@ header {
     font-weight: bold;
 }
 
-.search-button button:hover {
-    background-color: #0097a7;
-}
-
 #clearbutton {
     background-color: #e0e0e0;
     color: #333;
@@ -108,17 +109,39 @@ header {
     background-color: #bdbdbd;
 }
 
-/* 検索結果 */
+.search-button button:hover {
+    background-color: #0097a7;
+}
+
+/* 検索結果ヘッダー */
+.under-header {
+    background-color: #00bcd4;
+    color: white;
+    padding: 12px 20px;
+    font-size: 1.2em;
+    font-weight: bold;
+    border-bottom: 2px solid #0097a7;
+    border-radius: 8px;
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-top: 20px;
+    box-sizing: border-box;
+}
+
+/* 検索結果ボックス */
 .result-box {
     background-color: #ffffff;
-    margin: 20px; 
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-top: 10px;
+    margin-bottom: 20px;
     padding: 20px;
     border-radius: 8px; 
     box-shadow: 0px 2px 6px rgba(0,0,0,0.1);
-    max-width: 1000px;
-    width: calc(100% - 40px);
+    box-sizing: border-box;
 }
 
+/* 検索結果テーブル */
 .result-box table {
     width: 100%;
     border-collapse: collapse;
@@ -127,5 +150,5 @@ header {
 .result-box th, .result-box td {
     padding: 10px;
     text-align: left;
-    border-bottom: 1px solid #ddd
+    border-bottom: 1px solid #ddd;
 }

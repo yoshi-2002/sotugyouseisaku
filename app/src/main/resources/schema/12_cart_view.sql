@@ -9,7 +9,8 @@ SELECT
     p.jyoutai,                 -- 商品状態（新品・中古）
     p.stock,                   -- 在庫数
     m.name AS maker,           -- メーカー名
-    cat.name AS category       -- カテゴリ名
+    cat.name AS category,      -- カテゴリ名
+    p.image_url                -- 画像URL
 FROM online_shop.cart c
 JOIN online_shop.product p
     ON c.product_id = p.id

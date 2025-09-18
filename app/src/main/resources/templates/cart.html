@@ -10,9 +10,13 @@
   <h1 class="site-title">
     <span>🛒 ショッピングカート</span>
     <a th:href="@{/index}" title="カートを見る" class="cart-button">ショップに移動🛒</a>
-</h1>
+  </h1>
 
   <!-- カート内商品一覧 -->
+    
+  <header>
+    <div class="header-top">カート情報</div>
+  </header>
   <div class="result-box">
     <table border="1">
       <thead>
@@ -52,5 +56,23 @@
       </tbody>
     </table>
   </div>
+<header>
+  <div class="header-top">購入確認</div>
+</header>
+
+<div class="result-box">
+  <form th:action="@{/buy/add}" method="post">
+    <!-- カートに商品がある場合のみボタンを表示 -->
+    <div th:if="${!#lists.isEmpty(cartViewResultListDTO.cartViewList)}" style="text-align:center; margin-top:10px;">
+      <button type="submit">購入する</button>
+    </div>
+
+    <!-- カートが空の場合のメッセージ -->
+    <div th:if="${#lists.isEmpty(cartViewResultListDTO.cartViewList)}" style="text-align:center; margin-top:10px;">
+      カートに商品は入っていません。
+    </div>
+  </form>
+</div>
+
 </body>
 </html>

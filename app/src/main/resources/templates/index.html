@@ -7,9 +7,10 @@
 </head>
 
 <body>
-  <!-- 横幅いっぱいの帯タイトル（角丸なし・左寄せ） -->
-  <h1 class="site-title">🛒 オンラインショップ</h1>
-
+  <h1 class="site-title">
+      🛒 オンラインショップ
+      <a th:href="@{/cart}" title="カートを見る" class="cart-button">カートに移動🛒</a>
+  </h1>
   <!-- 検索フォーム（フリーワード＋こだわり検索を統合） -->
   <header>
     <div class="header-top">商品検索</div>

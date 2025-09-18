@@ -152,3 +152,21 @@ header .header-top {
     text-align: left;
     border-bottom: 1px solid #ddd;
 }
+
+/* サイトタイトル横のカートボタン */
+.site-title .cart-button {
+    margin-left: 1300px;          /* タイトル文字との間隔 */
+    font-size: 0.6em;           /* アイコンや文字のサイズ */
+    text-decoration: none; 
+    vertical-align: middle;     /* タイトルの中央に揃える */
+    background-color: #ff5722;  /* 背景色（オレンジ系） */
+    color: white;               /* 文字色 */
+    padding: 5px 12px;          /* 上下左右の余白 */
+    border-radius: 8px;         /* 丸み */
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2); /* 軽い影 */
+    transition: background-color 0.3s;     /* ホバー時の変化を滑らかに */
+}
+
+.site-title .cart-button:hover {
+    background-color: #e64a19;  /* ホバー時の濃いオレンジ */
+}

@@ -136,7 +136,7 @@
           </td>
           <td>
             <form th:action="@{/cart/add}" method="post">
-              <input type="hidden" th:name="productId" th:value="${product.id}">
+              <input type="hidden" name="productId" th:value="${product.id}">
               <button type="submit">カートへ追加</button>
             </form>
           </td>

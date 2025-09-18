@@ -6,8 +6,7 @@
 <mapper namespace="com.sotugyouseisaku.app.repository.cart.CartMapper">
 
     <!-- カートに追加 -->
-    <insert id="insertCart"
-            parameterType="com.sotugyouseisaku.app.Record.CartRecord">
+    <insert id="insertCartItem">
         INSERT INTO online_shop.cart
             (product_id, quantity, added_at)
         VALUES
@@ -15,16 +14,10 @@
     </insert>
 
     <!-- カート内容を全件取得 -->
-    <select id="selectAllCart"
-            resultType="com.sotugyouseisaku.app.Record.CartRecord">
-        SELECT
-            id,
-            product_id,
-            quantity,
-            added_at
-        FROM
-            online_shop.cart
+    <!-- <select id="selectAllCartItems" resultType="com.sotugyouseisaku.app.Record.CartRecord">
+        SELECT id, product_id, quantity, added_at
+        FROM online_shop.cart
         ORDER BY added_at DESC
-    </select>
+    </select> -->
 
 </mapper>

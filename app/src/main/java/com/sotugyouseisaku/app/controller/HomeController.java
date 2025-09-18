@@ -5,11 +5,13 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.sotugyouseisaku.app.form.ProductSearchForm;
 import com.sotugyouseisaku.app.dto.ProductViewResultListDTO;
 import com.sotugyouseisaku.app.dto.ProductSearchFormDTO;
 import com.sotugyouseisaku.app.service.IndexService;
+import com.sotugyouseisaku.app.service.CartService;
 
 import lombok.RequiredArgsConstructor;
 
@@ -22,6 +24,7 @@ import jakarta.validation.Valid;
 public class HomeController {
 
     private final IndexService indexService;
+    private final CartService cartService;
 
     @GetMapping("/index")
     public String index(
@@ -76,4 +79,33 @@ public class HomeController {
 
         return "index";
     }
+
+    // ------------------------------
+    // カートに追加する POST メソッド
+    // ------------------------------
+    @PostMapping("/cart/add")
+    public String addToCart(
+            @RequestParam("productId") int productId,
+            @RequestParam(value = "quantity", defaultValue = "1") int quantity,
+            @ModelAttribute ProductSearchForm productSearchForm,
+            Model model) {
+
+        // カートに追加
+        cartService.addToCart(productId, quantity);
+
+        // 元の検索結果画面に戻す
+        ProductSearchFormDTO productSearchFormDTO = indexService.getSearchFormDTO();
+        productSearchForm.giveProductSearchForm(productSearchFormDTO);
+        ProductViewResultListDTO productViewResultListDTO =
+                indexService.getSearchResultListDTO(productSearchForm);
+
+        model.addAttribute("productViewResultListDTO", productViewResultListDTO);
+        model.addAttribute("productSearchForm", productSearchForm);
+        model.addAttribute("productSearchFormDTO", productSearchFormDTO);
+        model.addAttribute("cartMessage", "商品をカートに追加しました！");
+
+        return "index"; // index.html に戻す
+    }
 }
+
+

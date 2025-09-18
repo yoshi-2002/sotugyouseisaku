@@ -153,20 +153,40 @@ header .header-top {
     border-bottom: 1px solid #ddd;
 }
 
-/* サイトタイトル横のカートボタン */
-.site-title .cart-button {
-    margin-left: 1300px;          /* タイトル文字との間隔 */
-    font-size: 0.6em;           /* アイコンや文字のサイズ */
-    text-decoration: none; 
-    vertical-align: middle;     /* タイトルの中央に揃える */
-    background-color: #ff5722;  /* 背景色（オレンジ系） */
-    color: white;               /* 文字色 */
-    padding: 5px 12px;          /* 上下左右の余白 */
-    border-radius: 8px;         /* 丸み */
-    box-shadow: 0 2px 4px rgba(0,0,0,0.2); /* 軽い影 */
-    transition: background-color 0.3s;     /* ホバー時の変化を滑らかに */
+/* サイトタイトルをフレックスにしてボタンを右端に寄せる */
+.site-title {
+    display: flex;
+    align-items: center;    /* 垂直方向中央揃え */
+    background-color: #ff9800;       
+    color: white;
+    padding: 15px 25px;
+    font-size: 2em;
+    font-weight: bold;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+    margin: 0 0 20px 0;
+    width: 100%;  
 }
 
+/* タイトル文字 */
+.site-title span {
+    /* 文字は左に寄せるので特に調整不要 */
+}
+
+/* カートボタンを右端に寄せる */
+.site-title .cart-button {
+    margin-left: auto;       /* 左側は自動で空ける */
+    margin-right: 100px;      /* 右側に余白を追加 */
+    font-size: 0.6em;           
+    text-decoration: none; 
+    background-color: #ff5722;  
+    color: white;               
+    padding: 5px 12px;          
+    border-radius: 8px;         
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2); 
+    transition: background-color 0.3s;     
+}
+
+
 .site-title .cart-button:hover {
-    background-color: #e64a19;  /* ホバー時の濃いオレンジ */
+    background-color: #e64a19;  
 }

@@ -7,11 +7,13 @@
 
     <!-- カートに追加 -->
     <insert id="insertCartItem">
-        INSERT INTO online_shop.cart
-            (product_id, quantity, added_at)
-        VALUES
-            (#{productId}, #{quantity}, CURRENT_TIMESTAMP)
+        INSERT INTO online_shop.cart (product_id, quantity, added_at)
+        VALUES (#{productId}, #{quantity}, CURRENT_TIMESTAMP)
+        ON CONFLICT (product_id) 
+        DO UPDATE SET quantity = online_shop.cart.quantity + EXCLUDED.quantity,
+                    added_at = CURRENT_TIMESTAMP
     </insert>
+
 
     <!-- カート内容を全件取得 -->
     <!-- <select id="selectAllCartItems" resultType="com.sotugyouseisaku.app.Record.CartRecord">

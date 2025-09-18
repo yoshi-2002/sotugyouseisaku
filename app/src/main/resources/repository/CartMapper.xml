@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.sotugyouseisaku.app.repository.cart.CartMapper">
+
+    <!-- カートに追加 -->
+    <insert id="insertCart"
+            parameterType="com.sotugyouseisaku.app.Record.CartRecord">
+        INSERT INTO online_shop.cart
+            (product_id, quantity, added_at)
+        VALUES
+            (#{productId}, #{quantity}, CURRENT_TIMESTAMP)
+    </insert>
+
+    <!-- カート内容を全件取得 -->
+    <select id="selectAllCart"
+            resultType="com.sotugyouseisaku.app.Record.CartRecord">
+        SELECT
+            id,
+            product_id,
+            quantity,
+            added_at
+        FROM
+            online_shop.cart
+        ORDER BY added_at DESC
+    </select>
+
+</mapper>

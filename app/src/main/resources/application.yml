@@ -12,13 +12,16 @@ spring:
       continue-on-error: false # エラーがあれば起動を中止する
       schema-locations:
         - classpath:schema/01_product_view_sakujyo.sql
-        - classpath:schema/02_product_table_sakujyo.sql
-        - classpath:schema/03_category_alias_sakujyo.sql
-        - classpath:schema/04_maker.sql
-        - classpath:schema/05_category.sql
-        - classpath:schema/06_category_alias.sql
-        - classpath:schema/07_product.sql
-        - classpath:schema/08_product_view.sql
+        - classpath:schema/02_cart_table_sakujyo.sql
+        - classpath:schema/03_product_table_sakujyo.sql
+        - classpath:schema/04_category_alias_sakujyo.sql
+        - classpath:schema/05_maker.sql
+        - classpath:schema/06_category.sql
+        - classpath:schema/07_category_alias.sql
+        - classpath:schema/08_product.sql
+        - classpath:schema/09_product_view.sql
+        - classpath:schema/10_cart.sql
+
 
         # - classpath:schema/02_car_navigation.sql
         # - classpath:schema/03_car_navigation_alias.sql

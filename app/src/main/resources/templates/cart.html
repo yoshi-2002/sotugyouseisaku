@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>ショッピングカート</title>
+  <link rel="stylesheet" th:href="@{/css/index.css}">
+</head>
+<body>
+  <!-- タイトル -->
+  <h1 class="site-title">🛒 ショッピングカート</h1>
+
+  <!-- カート内商品一覧 -->
+  <div class="result-box">
+    <table border="1">
+      <thead>
+        <tr>
+          <th>カートID</th>
+          <th>商品ID</th>
+          <th>商品名</th>
+          <th>価格</th>
+          <th>数量</th>
+          <th>メーカー</th>
+          <th>カテゴリ</th>
+          <th>画像</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- カートが空の場合 -->
+        <tr th:if="${#lists.isEmpty(cartViewResultListDTO.cartViewList)}">
+          <td colspan="8" style="text-align:center;">
+            カートに商品は入っていません。
+          </td>
+        </tr>
+
+        <!-- カートに商品がある場合 -->
+        <tr th:each="item : ${cartViewResultListDTO.cartViewList}">
+          <td th:text="${item.cartId}"></td>
+          <td th:text="${item.productId}"></td>
+          <td th:text="${item.productName}"></td>
+          <td th:text="${item.price}"></td>
+          <td th:text="${item.quantity}"></td>
+          <td th:text="${item.maker}"></td>
+          <td th:text="${item.category}"></td>
+          <td>
+            <img th:if="${item.imageUrl != null}" th:src="${item.imageUrl}" alt="商品画像" width="150">
+            <span th:if="${item.imageUrl == null}">画像なし</span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</body>
+</html>

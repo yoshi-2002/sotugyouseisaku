@@ -1,0 +1,1 @@
+DROP VIEW IF EXISTS online_shop.buy_view;

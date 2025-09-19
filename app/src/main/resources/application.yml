@@ -11,21 +11,22 @@ spring:
       mode: always             # SQL初期化を常に実行
       continue-on-error: false # エラーがあれば起動を中止する
       schema-locations:
-        - classpath:schema/01_cart_view_sakujyo.sql
-        - classpath:schema/02_product_view_sakujyo.sql
-        - classpath:schema/03_buy_table_sakujyo.sql
-        - classpath:schema/04_cart_table_sakujyo.sql
-        - classpath:schema/05_product_table_sakujyo.sql
-        - classpath:schema/06_category_alias_sakujyo.sql
-        - classpath:schema/07_maker.sql
-        - classpath:schema/08_category.sql
-        - classpath:schema/09_category_alias.sql
-        - classpath:schema/10_product.sql
-        - classpath:schema/11_product_view.sql
-        - classpath:schema/12_cart.sql
-        - classpath:schema/13_cart_view.sql
-        - classpath:schema/14_buy.sql
-
+        - classpath:schema/01_buy_view_sakujyo.sql
+        - classpath:schema/02_cart_view_sakujyo.sql
+        - classpath:schema/03_product_view_sakujyo.sql
+        - classpath:schema/04_buy_table_sakujyo.sql
+        - classpath:schema/05_cart_table_sakujyo.sql
+        - classpath:schema/06_product_table_sakujyo.sql
+        - classpath:schema/07_category_alias_sakujyo.sql
+        - classpath:schema/08_maker.sql
+        - classpath:schema/09_category.sql
+        - classpath:schema/10_category_alias.sql
+        - classpath:schema/11_product.sql
+        - classpath:schema/12_product_view.sql
+        - classpath:schema/13_cart.sql
+        - classpath:schema/14_cart_view.sql
+        - classpath:schema/15_buy.sql
+        - classpath:schema/16_buy_view.sql
 
         # - classpath:schema/02_car_navigation.sql
         # - classpath:schema/03_car_navigation_alias.sql

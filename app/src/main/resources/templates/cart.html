@@ -64,17 +64,9 @@
   <form th:action="@{/buy/add}" method="post">
     <!-- カートに商品がある場合 -->
     <div th:if="${!#lists.isEmpty(cartViewResultListDTO.cartViewList)}" style="text-align:center; margin-top:10px;">
-  
-      <!-- hidden に全商品の productId と quantity を埋め込む -->
-      <div th:each="item : ${cartViewResultListDTO.cartViewList}">
-        <input type="hidden" name="productId" th:value="${item.productId}" />
-        <input type="hidden" name="quantity" th:value="${item.quantity}" />
-      </div>
-  
-      <!-- 購入ボタン -->
       <button type="submit">購入する</button>
     </div>
-  
+
     <!-- カートが空の場合 -->
     <div th:if="${#lists.isEmpty(cartViewResultListDTO.cartViewList)}" style="text-align:center; margin-top:10px;">
       カートに商品は入っていません。

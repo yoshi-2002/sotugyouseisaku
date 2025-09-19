@@ -10,11 +10,15 @@ import com.sotugyouseisaku.app.dto.CartViewResultListDTO;
 import com.sotugyouseisaku.app.dto.ProductSearchFormDTO;
 import com.sotugyouseisaku.app.dto.ProductViewResultListDTO;
 import com.sotugyouseisaku.app.form.ProductSearchForm;
+import com.sotugyouseisaku.app.Record.CartDeleteRecord;
 import com.sotugyouseisaku.app.service.CartViewService;
 import com.sotugyouseisaku.app.service.BuyService;
+import com.sotugyouseisaku.app.service.CartDeleteService;
 import com.sotugyouseisaku.app.service.IndexService;
 
 import lombok.RequiredArgsConstructor;
+
+import java.util.List;
 
 @Controller
 @RequiredArgsConstructor
@@ -22,6 +26,7 @@ public class CartController {
 
     private final CartViewService cartViewService;
     private final BuyService buyService;
+    private final CartDeleteService cartDeleteService;
     private final IndexService indexService;
 
     /**
@@ -35,22 +40,33 @@ public class CartController {
     }
 
     /**
-     * カート内の商品を購入テーブルに登録
+     * カート内の商品を購入テーブルに登録し、同時にカートを削除
      */
     @PostMapping("/buy/add")
     public String addToBuy(
             @ModelAttribute ProductSearchForm productSearchForm,
             Model model) {
 
-        // カート内の商品を取得
+        // 1. カート内の商品を取得
         CartViewResultListDTO cartViewResultListDTO = cartViewService.getAllCartItems();
 
-        // カート内の商品をすべて購入テーブルに登録
+        // 2. 購入テーブルに登録
         cartViewResultListDTO.getCartViewList().forEach(item ->
                 buyService.addToBuy(item.getProductId(), item.getQuantity())
         );
 
-        // 元の検索結果画面に戻す準備
+        // 3. カートから削除
+        List<CartDeleteRecord> deleteList = cartViewResultListDTO.getCartViewList().stream()
+                .map(item -> {
+                    CartDeleteRecord r = new CartDeleteRecord();
+                    r.setProductId(item.getProductId());
+                    r.setQuantity(item.getQuantity());
+                    return r;
+                })
+                .toList();
+        cartDeleteService.deleteCartItems(deleteList);
+
+        // 4. 元の検索結果画面に戻す準備
         ProductSearchFormDTO productSearchFormDTO = indexService.getSearchFormDTO();
         productSearchForm.giveProductSearchForm(productSearchFormDTO);
         ProductViewResultListDTO productViewResultListDTO =

@@ -1,14 +1,14 @@
-package com.sotugyouseisaku.app.repository.cart;
+// package com.sotugyouseisaku.app.repository.cart;
 
-import java.util.List;
-import org.apache.ibatis.annotations.Mapper;
-import com.sotugyouseisaku.app.Record.CartDeleteRecord;
+// import java.util.List;
+// import org.apache.ibatis.annotations.Mapper;
+// import com.sotugyouseisaku.app.Record.CartDeleteRecord;
 
-@Mapper
-public interface CartDeleteMapper {
+// @Mapper
+// public interface CartDeleteMapper {
 
-    // ------------------------------
-    // 指定されたカートIDのレコードを削除
-    // ------------------------------
-    void deleteCartItems(List<CartDeleteRecord> cartRecords);
-}
+//     // ------------------------------
+//     // 指定されたカートIDのレコードを削除
+//     // ------------------------------
+//     void deleteCartItems(List<CartDeleteRecord> cartRecords);
+// }

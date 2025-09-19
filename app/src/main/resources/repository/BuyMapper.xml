@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.sotugyouseisaku.app.repository.buy.BuyMapper">
+
+    <!-- 購入に追加 -->
+    <insert id="insertBuyItem">
+        INSERT INTO online_shop.buy (product_id, quantity, bought_at)
+        VALUES (#{productId}, #{quantity}, CURRENT_TIMESTAMP)
+        ON CONFLICT (product_id) 
+        DO UPDATE SET quantity = online_shop.buy.quantity + EXCLUDED.quantity,
+                      bought_at = CURRENT_TIMESTAMP
+    </insert>
+    
+</mapper>

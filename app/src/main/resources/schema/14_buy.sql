@@ -1,8 +1,7 @@
-DROP TABLE IF EXISTS online_shop.buy;
 CREATE TABLE online_shop.buy (
     id SERIAL PRIMARY KEY,
-    product_id INT NOT NULL,                  -- 商品ID（外部キー）
-    quantity INT DEFAULT 1,                   -- 購入数量
+    product_id INT NOT NULL UNIQUE,          -- 商品ID（外部キー, ユニーク制約を追加）
+    quantity INT DEFAULT 1,                  -- 購入数量
     bought_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     CONSTRAINT fk_buy_product FOREIGN KEY (product_id) REFERENCES online_shop.product(id)
 );

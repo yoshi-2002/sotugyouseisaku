@@ -14,12 +14,4 @@
                     added_at = CURRENT_TIMESTAMP
     </insert>
 
-
-    <!-- カート内容を全件取得 -->
-    <!-- <select id="selectAllCartItems" resultType="com.sotugyouseisaku.app.Record.CartRecord">
-        SELECT id, product_id, quantity, added_at
-        FROM online_shop.cart
-        ORDER BY added_at DESC
-    </select> -->
-
 </mapper>

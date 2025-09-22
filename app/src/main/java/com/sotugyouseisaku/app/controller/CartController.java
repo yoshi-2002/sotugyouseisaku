@@ -18,8 +18,6 @@ import com.sotugyouseisaku.app.service.IndexService;
 
 import lombok.RequiredArgsConstructor;
 
-import java.util.List;
-
 @Controller
 @RequiredArgsConstructor
 public class CartController {
@@ -55,16 +53,10 @@ public class CartController {
                 buyService.addToBuy(item.getProductId(), item.getQuantity())
         );
 
-        // 3. カートから削除
-        List<CartDeleteRecord> deleteList = cartViewResultListDTO.getCartViewList().stream()
-                .map(item -> {
-                    CartDeleteRecord r = new CartDeleteRecord();
-                    r.setProductId(item.getProductId());
-                    r.setQuantity(item.getQuantity());
-                    return r;
-                })
-                .toList();
-        cartDeleteService.deleteCartItems(deleteList);
+        // 3. カートから削除（Insertスタイルに合わせて1件ずつ削除）
+        cartViewResultListDTO.getCartViewList().forEach(item -> {
+            cartDeleteService.deleteCartItem(item.getCartId()); // ←修正箇所
+        });
 
         // 4. 元の検索結果画面に戻す準備
         ProductSearchFormDTO productSearchFormDTO = indexService.getSearchFormDTO();

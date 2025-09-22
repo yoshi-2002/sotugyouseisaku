@@ -5,14 +5,21 @@
 
 <mapper namespace="com.sotugyouseisaku.app.repository.cart.CartDeleteMapper">
 
-    <!-- 指定されたカートIDのレコードを削除 -->
-    <delete id="deleteCartItems" parameterType="java.util.List">
+    <!-- 単一の cartId を指定して削除 -->
+    <delete id="deleteCartItem" parameterType="int">
         DELETE FROM online_shop.cart
-        WHERE id IN
-        <foreach collection="cartRecords" item="item" open="(" separator="," close=")">
-            #{item.cartId}
-        </foreach>
+        WHERE id = #{cartId}
     </delete>
 
-</mapper>
+    <!-- 削除対象を確認したいとき用（必要なら） -->
+    <!--
+    <select id="selectAllCartForDelete" resultType="com.sotugyouseisaku.app.Record.CartDeleteRecord">
+        SELECT id AS cartId,
+               product_id AS productId,
+               quantity,
+               added_at AS addedAt
+        FROM online_shop.cart
+    </select>
+    -->
 
+</mapper>

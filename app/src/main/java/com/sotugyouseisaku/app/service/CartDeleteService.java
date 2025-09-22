@@ -1,13 +1,10 @@
 package com.sotugyouseisaku.app.service;
 
-import java.util.List;
-import com.sotugyouseisaku.app.Record.CartDeleteRecord;
-
 public interface CartDeleteService {
 
     /**
-     * 指定された商品リストをカートから削除する
-     * @param deleteList 削除対象のカート商品リスト
+     * 指定されたカートIDの商品を削除する
+     * @param cartId 削除対象のカートID
      */
-    void deleteCartItems(List<CartDeleteRecord> deleteList);
+    void deleteCartItem(int cartId);
 }

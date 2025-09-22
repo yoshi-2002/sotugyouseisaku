@@ -9,9 +9,10 @@
     <delete id="deleteCartItems" parameterType="java.util.List">
         DELETE FROM online_shop.cart
         WHERE id IN
-        <foreach collection="list" item="item" open="(" separator="," close=")">
+        <foreach collection="cartRecords" item="item" open="(" separator="," close=")">
             #{item.cartId}
         </foreach>
     </delete>
 
 </mapper>
+

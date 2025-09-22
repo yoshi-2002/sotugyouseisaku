@@ -68,6 +68,6 @@ public class CartController {
         model.addAttribute("productSearchFormDTO", productSearchFormDTO);
         model.addAttribute("buyMessage", "購入が完了しました！");
 
-        return "index";
+        return "buy";
     }
 }

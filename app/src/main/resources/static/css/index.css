@@ -153,40 +153,37 @@ header .header-top {
     border-bottom: 1px solid #ddd;
 }
 
-/* サイトタイトルをフレックスにしてボタンを右端に寄せる */
+/* タイトル全体をフレックスにして左右に広げる */
 .site-title {
     display: flex;
-    align-items: center;    /* 垂直方向中央揃え */
-    background-color: #ff9800;       
+    justify-content: space-between; /* 左右に広げる */
+    align-items: center;
+    padding: 15px 40px; /* 上下15px、左右50pxの余白 タイトル全体の移動*/
+}
+
+/* ボタンをまとめるラッパー */
+.button-group {
+    display: flex;
+    gap: 30px; /* ボタン間の間隔 */
+}
+
+/* マイページボタン */
+.button-group .mypage-button {
+    font-size: 0.6em;
+    text-decoration: none;
+    padding: 5px 12px;
+    background-color: #4caf50;
+    border-radius: 10px;
     color: white;
-    padding: 15px 25px;
-    font-size: 2em;
-    font-weight: bold;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.2);
-    margin: 0 0 20px 0;
-    width: 100%;  
 }
 
-/* タイトル文字 */
-.site-title span {
-    /* 文字は左に寄せるので特に調整不要 */
-}
-
-/* カートボタンを右端に寄せる */
-.site-title .cart-button {
-    margin-left: auto;       /* 左側は自動で空ける */
-    margin-right: 100px;      /* 右側に余白を追加 */
-    font-size: 0.6em;           
-    text-decoration: none; 
-    background-color: #ff5722;  
-    color: white;               
-    padding: 5px 12px;          
-    border-radius: 8px;         
-    box-shadow: 0 2px 4px rgba(0,0,0,0.2); 
-    transition: background-color 0.3s;     
-}
-
-
-.site-title .cart-button:hover {
-    background-color: #e64a19;  
+/* カートボタン */
+.button-group .cart-button {
+    font-size: 0.6em;
+    text-decoration: none;
+    padding: 5px 12px;
+    background-color: #ff5722;
+    color: white;
+    border-radius: 10px;
+    margin-right: 110px; /* 右端に余白を追加 */
 }

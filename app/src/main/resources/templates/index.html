@@ -7,10 +7,16 @@
 </head>
 
 <body>
-  <h1 class="site-title">
-      <span>🛒 オンラインショップ</span>
-      <a th:href="@{/cart}" title="カートを見る" class="cart-button">カートに移動🛒</a>
-  </h1>
+<h1 class="site-title">
+    <span>🛒 オンラインショップ</span>
+
+    <!-- ボタンをまとめるラッパー -->
+    <div class="button-group">
+        <a th:href="@{/myPage}" title="マイページに移動" class="mypage-button">マイページに移動🛒</a>
+        <a th:href="@{/cart}" title="カートを見る" class="cart-button">カートに移動🛒</a>
+    </div>
+</h1>
+
   <!-- 検索フォーム（フリーワード＋こだわり検索を統合） -->
   <header>
     <div class="header-top">商品検索</div>

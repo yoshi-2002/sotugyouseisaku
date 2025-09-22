@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>購入完了画面</title>
+  <link rel="stylesheet" th:href="@{/css/index.css}">
+</head>
+<body>
+  <h1 class="site-title">
+      <span>🛒 購入完了画面</span>
+
+      <!-- ボタンをまとめるラッパー -->
+      <div class="button-group">
+          <a th:href="@{/myPage}" title="マイページに移動" class="mypage-button">マイページに移動🛒</a>
+          <a th:href="@{/index}" title="ショップに移動" class="cart-button">ショップに移動🛒</a>
+      </div>
+  </h1>
+
+  <!-- お礼メッセージ -->
+  <div style="text-align:center; margin-top:50px;">
+    <h2>✨ お買い上げありがとうございました！ ✨</h2>
+    <p>ご注文内容はマイページからご確認いただけます。</p>
+    <div style="margin-top:20px;">
+      <a th:href="@{/myPage}" class="cart-button">マイページへ</a>
+    </div>
+  </div>
+</body>
+</html>

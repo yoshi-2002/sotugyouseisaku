@@ -2,12 +2,12 @@
 <html lang="ja" xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="UTF-8">
-  <title>ショッピングカート</title>
+  <title>マイページ</title>
   <link rel="stylesheet" th:href="@{/css/index.css}">
 </head>
 <body>
   <h1 class="site-title">
-      <span>🛒 ショッピングカート</span>
+      <span>👤 マイページ</span>
 
       <!-- ボタンをまとめるラッパー -->
       <div class="button-group">
@@ -15,8 +15,8 @@
           <a th:href="@{/index}" title="ショップに移動" class="cart-button">ショップに移動🛒</a>
       </div>
   </h1>
+
   <!-- カート内商品一覧 -->
-    
   <header>
     <div class="header-top">カート情報</div>
   </header>
@@ -59,24 +59,49 @@
       </tbody>
     </table>
   </div>
-<header>
-  <div class="header-top">購入確認</div>
-</header>
 
-<div class="result-box">
-  <form th:action="@{/buy/add}" method="post">
-    <!-- カートに商品がある場合 -->
-    <div th:if="${!#lists.isEmpty(cartViewResultListDTO.cartViewList)}" style="text-align:center; margin-top:10px;">
-      <button type="submit">購入する</button>
-    </div>
+  <!-- 購入履歴一覧 -->
+  <header>
+    <div class="header-top">注文内容</div>
+  </header>
+  <div class="result-box">
+    <table border="1">
+      <thead>
+        <tr>
+          <th>注文ID</th>
+          <th>商品ID</th>
+          <th>商品名</th>
+          <th>価格</th>
+          <th>数量</th>
+          <th>メーカー</th>
+          <th>カテゴリ</th>
+          <th>画像</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- 購入履歴が空の場合 -->
+        <tr th:if="${#lists.isEmpty(buyViewResultListDTO.buyViewList)}">
+          <td colspan="8" style="text-align:center;">
+            注文中の商品はありません。
+          </td>
+        </tr>
 
-    <!-- カートが空の場合 -->
-    <div th:if="${#lists.isEmpty(cartViewResultListDTO.cartViewList)}" style="text-align:center; margin-top:10px;">
-      カートに商品は入っていません。
-    </div>
-  </form>
-  
-</div>
-
+        <!-- 購入履歴がある場合 -->
+        <tr th:each="item : ${buyViewResultListDTO.buyViewList}">
+          <td th:text="${item.buyId}"></td>
+          <td th:text="${item.productId}"></td>
+          <td th:text="${item.productName}"></td>
+          <td th:text="${item.price}"></td>
+          <td th:text="${item.quantity}"></td>
+          <td th:text="${item.maker}"></td>
+          <td th:text="${item.category}"></td>
+          <td>
+            <img th:if="${item.imageUrl != null}" th:src="${item.imageUrl}" alt="商品画像" width="150">
+            <span th:if="${item.imageUrl == null}">画像なし</span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </body>
 </html>

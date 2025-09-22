@@ -1,9 +1,9 @@
 package com.sotugyouseisaku.app.repository.cart;
 
-import java.util.List;
+// import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
-import com.sotugyouseisaku.app.Record.CartRecord;
+// import com.sotugyouseisaku.app.Record.CartRecord;
 
 @Mapper
 public interface CartMapper {
@@ -17,5 +17,5 @@ public interface CartMapper {
     // ------------------------------
     // カート内容を取得
     // ------------------------------
-    List<CartRecord> selectAllCartItems();
+    // List<CartRecord> selectAllCartItems();
 }

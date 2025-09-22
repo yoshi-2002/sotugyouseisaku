@@ -10,7 +10,6 @@ import com.sotugyouseisaku.app.dto.CartViewResultListDTO;
 import com.sotugyouseisaku.app.dto.ProductSearchFormDTO;
 import com.sotugyouseisaku.app.dto.ProductViewResultListDTO;
 import com.sotugyouseisaku.app.form.ProductSearchForm;
-import com.sotugyouseisaku.app.Record.CartDeleteRecord;
 import com.sotugyouseisaku.app.service.CartViewService;
 import com.sotugyouseisaku.app.service.BuyService;
 import com.sotugyouseisaku.app.service.CartDeleteService;

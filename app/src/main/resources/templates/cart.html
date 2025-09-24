@@ -55,6 +55,13 @@
             <img th:if="${item.imageUrl != null}" th:src="${item.imageUrl}" alt="商品画像" width="150">
             <span th:if="${item.imageUrl == null}">画像なし</span>
           </td>
+          <td>
+            <form th:action="@{/cart/delete}" method="post">
+              <!-- この商品の cartId を送る -->
+              <input type="hidden" name="cartId" th:value="${item.cartId}">
+              <button type="submit">削除</button>
+            </form>
+          </td>
         </tr>
       </tbody>
     </table>

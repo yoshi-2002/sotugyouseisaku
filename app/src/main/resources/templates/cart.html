@@ -32,6 +32,7 @@
           <th>メーカー</th>
           <th>カテゴリ</th>
           <th>画像</th>
+          <th>取り消し</th>
         </tr>
       </thead>
       <tbody>
@@ -59,7 +60,7 @@
             <form th:action="@{/cart/delete}" method="post">
               <!-- この商品の cartId を送る -->
               <input type="hidden" name="cartId" th:value="${item.cartId}">
-              <button type="submit">削除</button>
+              <button type="submit">カートから削除</button>
             </form>
           </td>
         </tr>

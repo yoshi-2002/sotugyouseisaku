@@ -4,6 +4,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ModelAttribute;
 
 import com.sotugyouseisaku.app.dto.CartViewResultListDTO;
@@ -70,4 +71,36 @@ public class CartController {
 
         return "buy";
     }
+
+    // ------------------------------
+    // カートから削除する POST メソッド
+    // ------------------------------
+    @PostMapping("/cart/delete")
+    public String deleteFromCart(
+            @RequestParam("cartId") int cartId,
+            @ModelAttribute ProductSearchForm productSearchForm,
+            Model model) {
+
+        // カートから削除
+        cartDeleteService.deleteCartItem(cartId);
+
+        // 最新のカート一覧を取得
+        CartViewResultListDTO cartViewResultListDTO = cartViewService.getAllCartItems();
+
+        // 元の検索結果画面に戻す準備
+        ProductSearchFormDTO productSearchFormDTO = indexService.getSearchFormDTO();
+        productSearchForm.giveProductSearchForm(productSearchFormDTO);
+        ProductViewResultListDTO productViewResultListDTO =
+                indexService.getSearchResultListDTO(productSearchForm);
+
+        // モデルに値をセット
+        model.addAttribute("cartViewResultListDTO", cartViewResultListDTO);
+        model.addAttribute("productViewResultListDTO", productViewResultListDTO);
+        model.addAttribute("productSearchForm", productSearchForm);
+        model.addAttribute("productSearchFormDTO", productSearchFormDTO);
+        model.addAttribute("cartMessage", "商品をカートから削除しました！");
+
+        return "cart"; // cart.html に戻す
+    }
+
 }

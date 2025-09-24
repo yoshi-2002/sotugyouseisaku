@@ -28,14 +28,23 @@ public class CartController {
     private final IndexService indexService;
 
     /**
-     * カート内商品を全件表示
+     * カート内商品を全件表示と合計金額の計算
      */
     @GetMapping("/cart")
     public String cart(Model model) {
         CartViewResultListDTO cartViewResultListDTO = cartViewService.getAllCartItems();
         model.addAttribute("cartViewResultListDTO", cartViewResultListDTO);
+    
+        // 合計金額を計算
+        double totalPrice = cartViewResultListDTO.getCartViewList()
+            .stream()
+            .mapToDouble(item -> item.getPrice() * item.getQuantity())
+            .sum();
+        model.addAttribute("totalPrice", totalPrice);
+    
         return "cart";
     }
+    
 
     /**
      * カート内の商品を購入テーブルに登録し、同時にカートを削除

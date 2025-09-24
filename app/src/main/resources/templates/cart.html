@@ -67,24 +67,46 @@
       </tbody>
     </table>
   </div>
-<header>
-  <div class="header-top">購入確認</div>
-</header>
 
-<div class="result-box">
-  <form th:action="@{/buy/add}" method="post">
-    <!-- カートに商品がある場合 -->
-    <div th:if="${!#lists.isEmpty(cartViewResultListDTO.cartViewList)}" style="text-align:center; margin-top:10px;">
-      <button type="submit">購入する</button>
-    </div>
 
-    <!-- カートが空の場合 -->
-    <div th:if="${#lists.isEmpty(cartViewResultListDTO.cartViewList)}" style="text-align:center; margin-top:10px;">
-      カートに商品は入っていません。
-    </div>
-  </form>
+  <header>
+    <div class="header-top">注文確認</div>
+  </header>
   
-</div>
+  <div class="result-box">
+    <form th:action="@{/buy/add}" method="post">
+  
+      <!-- カートに商品がある場合 -->
+      <div th:if="${!#lists.isEmpty(cartViewResultListDTO.cartViewList)}" style="margin-top:10px;">
+        
+        <!-- 商品ごとの購入情報をカード風に表示 -->
+        <div th:each="item : ${cartViewResultListDTO.cartViewList}"
+             style="border:1px solid #ccc; padding:8px; margin-bottom:8px; border-radius:5px; background-color:#f9f9f9;">
+          <div><strong>商品名:</strong> <span th:text="${item.productName}">商品名</span></div>
+          <div><strong>個数:</strong> <span th:text="${item.quantity}">0</span></div>
+          <div><strong>価格:</strong> <span th:text="${item.price * item.quantity}">0</span> 円</div>
+        </div>
+  
+        <!-- 合計金額 -->
+        <div style="text-align:right; font-weight:bold; font-size:1.1em; margin-top:10px;">
+          合計金額: <span th:text="${totalPrice}">0</span> 円
+        </div>
+  
+        <!-- 購入ボタン -->
+        <div style="text-align:center; margin-top:15px;">
+          <button type="submit" style="padding:8px 16px; font-size:1em; cursor:pointer;">注文を確定する</button>
+        </div>
+  
+      </div>
+  
+      <!-- カートが空の場合 -->
+      <div th:if="${#lists.isEmpty(cartViewResultListDTO.cartViewList)}" style="text-align:center; margin-top:10px;">
+        カートに商品は入っていません。
+      </div>
+  
+    </form>
+  </div>
+  
 
 </body>
 </html>

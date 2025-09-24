@@ -109,6 +109,13 @@ public class CartController {
         model.addAttribute("productSearchFormDTO", productSearchFormDTO);
         model.addAttribute("cartMessage", "商品をカートから削除しました！");
 
+        // 合計金額を計算
+        double totalPrice = cartViewResultListDTO.getCartViewList()
+            .stream()
+            .mapToDouble(item -> item.getPrice() * item.getQuantity())
+            .sum();
+        model.addAttribute("totalPrice", totalPrice);
+
         return "cart"; // cart.html に戻す
     }
 

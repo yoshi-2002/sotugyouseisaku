@@ -17,142 +17,133 @@
     </div>
 </h1>
 
-  <!-- 検索フォーム（フリーワード＋こだわり検索を統合） -->
-  <header>
+<!-- 検索フォーム -->
+<header>
     <div class="header-top">商品検索</div>
-  </header>
-  <div id="search-box">
-    <form th:action="@{/index}" id="productSearchForm" th:object="${productSearchForm}" method="post">
+</header>
+<div id="search-box">
+    <form th:action="@{/index}" th:object="${productSearchForm}" method="post">
 
-      <!-- フリーワード検索 -->
-      <div class="list-and-name">
-        <label th:for="*{keyword}">🔍何をお探しですか？</label>
-        <div class="input-wrapper">
-          <input type="text" id="keyword" th:field="*{keyword}" placeholder="商品名や商品カテゴリで検索">
+        <!-- 1段落目: キーワード -->
+        <div class="search-row">
+            <div class="search-col">
+                <label for="keyword">🔍何をお探しですか？</label>
+                <input type="text" id="keyword" th:field="*{keyword}" placeholder="商品名や商品カテゴリで検索">
+                <div class="error" th:if="${#fields.hasErrors('keyword')}" th:errors="*{keyword}"></div>
+            </div>
         </div>
-        <div class="error" th:if="${#fields.hasErrors('keyword')}" th:errors="*{keyword}"></div>
-      </div>
 
-      <!-- カテゴリ選択 -->
-      <div class="list-and-name">
-        <label th:for="*{category}">商品カテゴリ</label>
-        <div class="pulldown-wrapper">
-          <select id="category" th:field="*{category}">
-            <option value="">選択してください</option>
-            <option th:each="cat : ${productSearchFormDTO.categoryRecords}" 
-                    th:value="${cat.category}" 
-                    th:text="${cat.category}"></option>    
-          </select>
+        <!-- 2段落目: カテゴリ・メーカー・状態・価格帯 -->
+        <div class="search-row">
+            <div class="search-col">
+                <label for="category">商品カテゴリ</label>
+                <select id="category" th:field="*{category}">
+                    <option value="">選択してください</option>
+                    <option th:each="cat : ${productSearchFormDTO.categoryRecords}" 
+                            th:value="${cat.category}" 
+                            th:text="${cat.category}"></option>    
+                </select>
+            </div>
+            <div class="search-col">
+                <label for="maker">メーカー</label>
+                <select id="maker" th:field="*{maker}">
+                    <option value="">選択してください</option>
+                    <option th:each="makerRec : ${productSearchFormDTO.makerRecords}"
+                            th:value="${makerRec.maker}"
+                            th:text="${makerRec.maker}"></option>
+                </select>
+            </div>
+            <div class="search-col">
+                <label>状態</label>
+                <div class="radio-wrapper">
+                    <label th:each="jRec : ${productSearchFormDTO.jyoutaiRecords}">
+                        <input type="radio" th:field="*{jyoutai}" th:value="${jRec.jyoutai}">
+                        <span th:text="${jRec.jyoutai}"></span>
+                    </label>
+                </div>
+            </div>
+            <div class="search-col">
+                <label>価格帯</label>
+                <div class="price-wrapper">
+                    <input type="number" th:field="*{priceMin}" placeholder="下限">
+                    <span>～</span>
+                    <input type="number" th:field="*{priceMax}" placeholder="上限">
+                </div>
+            </div>
         </div>
-      </div>
 
-      <!-- メーカー選択 -->
-      <div class="list-and-name">
-        <label th:for="*{maker}">メーカー</label>
-        <div class="pulldown-wrapper">
-          <select id="maker" th:field="*{maker}">
-            <option value="">選択してください</option>
-            <option th:each="makerRec : ${productSearchFormDTO.makerRecords}"
-                    th:value="${makerRec.maker}"
-                    th:text="${makerRec.maker}"></option>
-          </select>
+        <!-- 3段落目: 検索・クリアボタン -->
+        <div class="search-row search-button">
+            <button type="submit">検索</button>
+            <button type="button" id="clearbutton">クリア</button>
         </div>
-      </div>
-      
-      <!-- 状態（新品・中古） -->
-      <div class="list-and-name">
-        <label>状態</label>
-        <div class="radio-wrapper">
-          <label th:each="jRec : ${productSearchFormDTO.jyoutaiRecords}">
-            <input type="radio" th:field="*{jyoutai}" th:value="${jRec.jyoutai}">
-            <span th:text="${jRec.jyoutai}"></span>
-          </label>
-        </div>
-      </div>
 
-      <!-- 価格帯 -->
-      <div class="list-and-name">
-        <label>価格帯</label>
-        <div class="price-wrapper">
-          <input type="number" th:field="*{priceMin}" placeholder="下限">
-          <span>～</span>
-          <input type="number" th:field="*{priceMax}" placeholder="上限">
+        <!-- 4段落目: 表示順 -->
+        <div class="search-row">
+            <div class="search-col">
+                <label for="sortOrder">表示順</label>
+                <select id="sortOrder" th:field="*{sortOrder}" onchange="this.form.submit()">
+                    <option value="recommended" th:selected="${productSearchForm.sortOrder == 'recommended'}">オススメ順</option>
+                    <option value="priceAsc" th:selected="${productSearchForm.sortOrder == 'priceAsc'}">価格昇順</option>
+                    <option value="priceDesc" th:selected="${productSearchForm.sortOrder == 'priceDesc'}">価格降順</option>
+                </select>
+            </div>
         </div>
-      </div>
-
-      <!-- 検索・クリアボタン -->
-      <div class="search-button">
-        <button type="submit">検索</button>
-        <button type="button" id="clearbutton">クリア</button>
-      </div>
-
-      <!-- 表示順 -->
-      <div class="list-and-name">
-        <label for="sortOrder">表示順</label>
-        <div class="pulldown-wrapper">
-          <select id="sortOrder" th:field="*{sortOrder}" onchange="this.form.submit()">
-            <option value="recommended" th:selected="${productSearchForm.sortOrder == 'recommended'}">オススメ順</option>
-            <option value="priceAsc" th:selected="${productSearchForm.sortOrder == 'priceAsc'}">価格昇順</option>
-            <option value="priceDesc" th:selected="${productSearchForm.sortOrder == 'priceDesc'}">価格降順</option>
-          </select>
-        </div>
-      </div>
 
     </form>
-  </div>
+</div>
 
-  <!-- 検索結果 -->
-  <header class="under-header">
+<!-- 検索結果 -->
+<header class="under-header">
     <div class="header-left">商品一覧</div>
-  </header>
-  <div class="result-box">
+</header>
+<div class="result-box">
     <table border="1">
-      <thead>
-        <tr>
-          <th>商品ID</th>
-          <th>商品名</th>
-          <th>状態</th>
-          <th>商品説明</th>
-          <th>価格</th>
-          <th>在庫数</th>
-          <th>メーカー</th>
-          <th>カテゴリ</th>
-          <th>画像</th>
-          <th>購入</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr th:if="${#lists.isEmpty(productViewResultListDTO.productViewList)}">
-          <td colspan="9" style="text-align:center;">
-            検索条件に該当する商品は存在しませんでした。
-          </td>
-        </tr>
-        
-        <tr th:each="product : ${productViewResultListDTO.productViewList}">
-          <td th:text="${product.id}"></td>
-          <td th:text="${product.name}"></td>
-          <td th:text="${product.jyoutai}"></td>
-          <td th:text="${product.description}"></td>
-          <td th:text="${#numbers.formatInteger(product.price, 3, 'COMMA')}"></td>
-          <td th:text="${product.stock}"></td>
-          <td th:text="${product.maker}"></td>
-          <td th:text="${product.category}"></td>
-          <td>
-            <img th:if="${product.imageUrl != null}" th:src="${product.imageUrl}" alt="商品画像" width="300">
-            <span th:if="${product.imageUrl == null}">画像なし</span>
-          </td>
-          <td>
-            <form th:action="@{/cart/add}" method="post">
-              <input type="hidden" name="productId" th:value="${product.id}">
-              <button type="submit">カートへ追加</button>
-            </form>
-          </td>
-        </tr>
-      </tbody>
+        <thead>
+            <tr>
+                <th>商品ID</th>
+                <th>商品名</th>
+                <th>状態</th>
+                <th>商品説明</th>
+                <th>価格</th>
+                <th>在庫数</th>
+                <th>メーカー</th>
+                <th>カテゴリ</th>
+                <th>画像</th>
+                <th>購入</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:if="${#lists.isEmpty(productViewResultListDTO.productViewList)}">
+                <td colspan="10" style="text-align:center;">
+                    検索条件に該当する商品は存在しませんでした。
+                </td>
+            </tr>
+            
+            <tr th:each="product : ${productViewResultListDTO.productViewList}">
+                <td th:text="${product.id}"></td>
+                <td th:text="${product.name}"></td>
+                <td th:text="${product.jyoutai}"></td>
+                <td th:text="${product.description}"></td>
+                <td th:text="${#numbers.formatInteger(product.price, 3, 'COMMA')}"></td>
+                <td th:text="${product.stock}"></td>
+                <td th:text="${product.maker}"></td>
+                <td th:text="${product.category}"></td>
+                <td>
+                    <img th:if="${product.imageUrl != null}" th:src="${product.imageUrl}" alt="商品画像" width="300">
+                    <span th:if="${product.imageUrl == null}">画像なし</span>
+                </td>
+                <td>
+                    <form th:action="@{/cart/add}" method="post">
+                        <input type="hidden" name="productId" th:value="${product.id}">
+                        <button type="submit">カートへ追加</button>
+                    </form>
+                </td>
+            </tr>
+        </tbody>
     </table>
-  </div>
+</div>
 
-  <!-- JS 読み込み -->
-  <script type="text/javascript" th:src="@{/js/index.js}"></script>
+<script type="text/javascript" th:src="@{/js/index.js}"></script>
 </body>
 </html>

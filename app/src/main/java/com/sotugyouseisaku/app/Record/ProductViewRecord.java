@@ -9,7 +9,7 @@ public class ProductViewRecord {
     private String name;
     private String jyoutai;
     private String description;
-    private double price;
+    private int price;
     private int stock;
     private LocalDateTime createdAt;
     private String maker;

@@ -48,7 +48,7 @@
           <td th:text="${item.cartId}"></td>
           <td th:text="${item.productId}"></td>
           <td th:text="${item.productName}"></td>
-          <td th:text="${item.price}"></td>
+          <td th:text="${#numbers.formatInteger(item.price, 3, 'COMMA')}"></td>
           <td th:text="${item.quantity}"></td>
           <td th:text="${item.maker}"></td>
           <td th:text="${item.category}"></td>
@@ -81,16 +81,21 @@
         
         <!-- 商品ごとの購入情報をカード風に表示 -->
         <div th:each="item : ${cartViewResultListDTO.cartViewList}"
-             style="border:1px solid #ccc; padding:8px; margin-bottom:8px; border-radius:5px; background-color:#f9f9f9;">
+            style="border:1px solid #ccc; padding:8px; margin-bottom:8px; border-radius:5px; background-color:#f9f9f9;">
           <div><strong>商品名:</strong> <span th:text="${item.productName}">商品名</span></div>
           <div><strong>個数:</strong> <span th:text="${item.quantity}">0</span></div>
-          <div><strong>価格:</strong> <span th:text="${item.price * item.quantity}">0</span> 円</div>
+          <!-- 🔽 ここを修正：formatIntegerでカンマ区切り -->
+          <div><strong>価格:</strong> 
+            <span th:text="${#numbers.formatInteger(item.price * item.quantity, 3, 'COMMA')}">0</span> 円
+          </div>
         </div>
-  
+
         <!-- 合計金額 -->
         <div style="text-align:right; font-weight:bold; font-size:1.1em; margin-top:10px;">
-          合計金額: <span th:text="${totalPrice}">0</span> 円
+          <!-- 🔽 ここを修正：formatIntegerでカンマ区切り -->
+          合計金額: <span th:text="${#numbers.formatInteger(totalPrice, 3, 'COMMA')}">0</span> 円
         </div>
+
   
         <!-- 購入ボタン -->
         <div style="text-align:center; margin-top:15px;">

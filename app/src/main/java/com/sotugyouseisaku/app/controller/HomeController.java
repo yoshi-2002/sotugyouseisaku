@@ -103,7 +103,6 @@ public class HomeController {
         model.addAttribute("productSearchForm", productSearchForm);
         model.addAttribute("productSearchFormDTO", productSearchFormDTO);
         model.addAttribute("cartMessage", "商品をカートに追加しました！");
-
         return "index"; // index.html に戻す
     }
 }

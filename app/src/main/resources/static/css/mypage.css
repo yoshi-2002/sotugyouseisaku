@@ -162,3 +162,30 @@ body {
         width: 80%;
     }
 }
+
+/* 削除メッセージ */
+.cart-message {
+    position: fixed;         
+    top: 20px;               
+    left: 50%;               
+    transform: translateX(-50%); 
+    z-index: 1000;           
+    
+    background-color: rgba(60, 60, 60, 0.95); /* 灰色背景 */
+    color: white;
+    padding: 20px 40px;
+    border-radius: 12px;
+    font-size: 1.2em;
+    font-weight: bold;
+    box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+
+    opacity: 0;
+    animation: fadeInOut 2s ease-in-out forwards; /* 2秒表示 */
+}
+
+@keyframes fadeInOut {
+    0%   { opacity: 0; transform: translate(-50%, -30px); }
+    15%  { opacity: 1; transform: translate(-50%, 0); }
+    85%  { opacity: 1; transform: translate(-50%, 0); }
+    100% { opacity: 0; transform: translate(-50%, -30px); }
+}

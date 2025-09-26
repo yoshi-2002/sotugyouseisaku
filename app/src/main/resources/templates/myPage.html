@@ -17,6 +17,10 @@
     </div>
 </h1>
 
+<div th:if="${cartMessage}" class="cart-message">
+  <p th:text="${cartMessage}"></p>
+</div>
+
 <!-- カート情報 -->
 <header class="under-header">
     <div class="header-left">カート情報</div>

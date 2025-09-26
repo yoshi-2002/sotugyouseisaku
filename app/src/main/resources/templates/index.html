@@ -17,6 +17,11 @@
     </div>
 </h1>
 
+<!-- ✅ カート追加メッセージ -->
+<div th:if="${cartMessage}" class="cart-message">
+    <p th:text="${cartMessage}"></p>
+</div>
+
 <!-- 検索フォーム -->
 <header>
     <div class="header-top">商品検索</div>

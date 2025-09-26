@@ -17,6 +17,11 @@
     </div>
 </h1>
 
+<!-- 削除メッセージ（セッションから受け取る想定） -->
+<div th:if="${cartMessage}" class="cart-message">
+  <p th:text="${cartMessage}"></p>
+</div>
+
 <div class="cart-container">
     <!-- カートが空の場合 -->
     <div th:if="${#lists.isEmpty(cartViewResultListDTO.cartViewList)}" class="empty-cart">

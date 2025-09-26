@@ -120,9 +120,10 @@
                 </td>
             </tr>
             
-            <!-- 変更: 商品行に data-id を付与 -->
+            <!-- ★変更: 商品行に data-id を付与,商品行に title 属性を追加 -->
             <tr th:each="product : ${productViewResultListDTO.productViewList}" 
-                th:attr="data-id=${product.id}" class="clickable-row">
+                th:attr="data-id=${product.id}, title='クリックで詳細ページへ'" 
+                class="clickable-row">
                 <td th:text="${product.id}"></td>
                 <td th:text="${product.name}"></td>
                 <td th:text="${product.jyoutai}"></td>

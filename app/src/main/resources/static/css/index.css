@@ -168,3 +168,12 @@ select {
     text-align: left;
     border-bottom: 1px solid #ddd;
 }
+
+/* ★追加: 行をホバーしたときの視覚効果 */
+.clickable-row {
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+.clickable-row:hover {
+    background-color: #f0f8ff;
+}

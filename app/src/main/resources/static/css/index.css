@@ -161,19 +161,76 @@ select {
 /* テーブル */
 .result-box table {
     width: 100%;
-    border-collapse: collapse;
+    border-collapse: separate;
+    border-spacing: 0 8px; /* 行ごとに余白 */
 }
-.result-box th, .result-box td {
-    padding: 10px;
-    text-align: left;
-    border-bottom: 1px solid #ddd;
+.result-box th {
+    background-color: #00bcd4;
+    color: white;
+    padding: 12px;
+    text-align: center;
+    position: sticky;
+    top: 0;
+    z-index: 2;
+    border: none;
+}
+.result-box td {
+    background-color: #fff;
+    padding: 12px;
+    vertical-align: middle;
+    border: none;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
 }
 
-/* ★追加: 行をホバーしたときの視覚効果 */
+/* --- 行のホバー効果（浮き上がり＋色変化を両立） --- */
 .clickable-row {
     cursor: pointer;
-    transition: background-color 0.2s ease;
+    transition: transform 0.15s ease, background-color 0.15s ease, box-shadow 0.15s ease;
+}
+.clickable-row:hover td {
+    background-color: #f0f8ff;   /* 色が変わる */
+    box-shadow: 0 3px 6px rgba(0,0,0,0.15); /* 影を強調して浮き上がり感 */
 }
 .clickable-row:hover {
-    background-color: #f0f8ff;
+    transform: scale(1.01); /* 少し大きくする */
+}
+
+/* --- 入力欄・プルダウンの強調 --- */
+input[type="text"],
+input[type="number"],
+select {
+    padding: 8px 12px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    transition: border-color 0.2s;
+}
+input:focus, select:focus {
+    border-color: #00bcd4;
+    outline: none;
+    box-shadow: 0 0 4px rgba(0,188,212,0.4);
+}
+
+/* --- ボタン共通デザイン --- */
+button,
+.button-group a {
+    padding: 8px 16px;
+    border-radius: 6px;
+    font-weight: bold;
+    text-decoration: none;
+    transition: background-color 0.2s, transform 0.1s;
+}
+button:hover,
+.button-group a:hover {
+    transform: translateY(-2px);
+}
+
+/* --- カート追加ボタン調整 --- */
+.result-box button {
+    background-color: #00bcd4;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+}
+.result-box button:hover {
+    background-color: #0097a7;
 }

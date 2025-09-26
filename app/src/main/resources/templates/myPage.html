@@ -37,6 +37,8 @@
             </div>
             <div class="mypage-item-info">
                 <h3 th:text="${item.productName}">商品名</h3>
+                <p><strong>カートID:</strong> <span th:text="${item.cartId}"></span></p>
+                <p><strong>状態:</strong> <span th:text="${item.jyoutai}"></span></p>
                 <p><strong>価格:</strong> <span th:text="${#numbers.formatInteger(item.price, 3, 'COMMA')}"></span> 円</p>
                 <p><strong>個数:</strong> <span th:text="${item.quantity}"></span></p>
                 <p><strong>メーカー:</strong> <span th:text="${item.maker}"></span></p>
@@ -75,6 +77,8 @@
             </div>
             <div class="mypage-item-info">
                 <h3 th:text="${item.productName}">商品名</h3>
+                <p><strong>購入ID:</strong> <span th:text="${item.buyId}"></span></p>
+                <p><strong>状態:</strong> <span th:text="${item.jyoutai}"></span></p>
                 <p><strong>価格:</strong> <span th:text="${#numbers.formatInteger(item.price, 3, 'COMMA')}"></span> 円</p>
                 <p><strong>個数:</strong> <span th:text="${item.quantity}"></span></p>
                 <p><strong>メーカー:</strong> <span th:text="${item.maker}"></span></p>

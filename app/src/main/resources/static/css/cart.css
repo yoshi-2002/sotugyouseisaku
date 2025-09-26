@@ -60,7 +60,7 @@ header .header-top {
 /* 検索フォームボックス */
 #search-box {
     background-color: #ffffff;
-    margin: 10px 20px 20px 20px;
+    margin: 10px 20px 20px 20px; /* 上10px、左右20px、下20px */
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0px 2px 6px rgba(0,0,0,0.1);
@@ -77,7 +77,7 @@ header .header-top {
     align-items: flex-start;
 }
 
-/* ラベル */
+/* ラベルは上に表示 */
 .search-row label {
     display: block;
     font-weight: bold;
@@ -92,21 +92,16 @@ select {
     border: 1px solid #ccc;
     border-radius: 4px;
 }
-input:focus, select:focus {
-    border-color: #00bcd4;
-    outline: none;
-    box-shadow: 0 0 4px rgba(0,188,212,0.4);
-}
 
 /* ラジオボタン */
 .radio-wrapper {
-    display: flex;
-    gap: 15px;
+    display: flex;       /* 横並びにする */
+    gap: 15px;           /* 新品と中古の間隔 */
 }
 .radio-wrapper label {
     font-weight: normal;
     display: flex;
-    align-items: center;
+    align-items: center; /* テキストとボタンを縦位置中央 */
     gap: 5px;
 }
 
@@ -120,7 +115,7 @@ input:focus, select:focus {
 }
 
 /* 検索・クリアボタン */
-.search-button button {
+.search-button-row button {
     padding: 8px 16px;
     font-weight: bold;
     background-color: #00bcd4;
@@ -136,7 +131,7 @@ input:focus, select:focus {
 #clearbutton:hover {
     background-color: #bdbdbd;
 }
-.search-button button:hover {
+.search-button-row button:hover {
     background-color: #0097a7;
 }
 
@@ -163,79 +158,79 @@ input:focus, select:focus {
     box-sizing: border-box;
 }
 
-/* 商品カード一覧 */
-.card-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-    gap: 20px;
-}
-
-/* 商品カード */
-.product-card {
-    background: #fff;
-    border-radius: 8px;
-    padding: 15px;
-    box-shadow: 0 1px 4px rgba(0,0,0,0.1);
-    transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
-    cursor: pointer;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-.product-card img {
-    max-width: 100%;
-    max-height: 180px;
-    object-fit: contain;
-    margin-bottom: 10px;
-    border-radius: 4px;
-}
-.product-card h3 {
-    font-size: 1.1em;
-    margin: 5px 0;
-    text-align: center;
-}
-.product-card p {
-    margin: 4px 0;
-    font-size: 0.9em;
-    color: #333;
-}
-.no-image {
+/* テーブル */
+.result-box table {
     width: 100%;
-    height: 180px;
-    background-color: #eee;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #666;
-    font-size: 0.9em;
-    border-radius: 4px;
+    border-collapse: separate;
+    border-spacing: 0 8px; /* 行ごとに余白 */
+}
+.result-box th {
+    background-color: #00bcd4;
+    color: white;
+    padding: 12px;
+    text-align: center;
+    position: sticky;
+    top: 0;
+    z-index: 2;
+    border: none;
+}
+.result-box td {
+    background-color: #fff;
+    padding: 12px;
+    vertical-align: middle;
+    border: none;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
 }
 
-/* ホバー効果 */
-.clickable-card:hover {
-    transform: scale(1.03);
-    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-    background-color: #f0f8ff;
+/* --- 行のホバー効果（浮き上がり＋色変化を両立） --- */
+.clickable-row {
+    cursor: pointer;
+    transition: transform 0.15s ease, background-color 0.15s ease, box-shadow 0.15s ease;
+}
+.clickable-row:hover td {
+    background-color: #f0f8ff;   /* 色が変わる */
+    box-shadow: 0 3px 6px rgba(0,0,0,0.15); /* 影を強調して浮き上がり感 */
+}
+.clickable-row:hover {
+    transform: scale(1.01); /* 少し大きくする */
 }
 
-/* カート追加ボタン */
-.cart-form button {
-    margin-top: auto;
+/* --- 入力欄・プルダウンの強調 --- */
+input[type="text"],
+input[type="number"],
+select {
     padding: 8px 12px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    transition: border-color 0.2s;
+}
+input:focus, select:focus {
+    border-color: #00bcd4;
+    outline: none;
+    box-shadow: 0 0 4px rgba(0,188,212,0.4);
+}
+
+/* --- ボタン共通デザイン --- */
+button,
+.button-group a {
+    padding: 8px 16px;
+    border-radius: 6px;
+    font-weight: bold;
+    text-decoration: none;
+    transition: background-color 0.2s, transform 0.1s;
+}
+button:hover,
+.button-group a:hover {
+    transform: translateY(-2px);
+}
+
+/* --- カート追加ボタン調整 --- */
+.result-box button {
     background-color: #00bcd4;
     color: #fff;
     border: none;
-    border-radius: 6px;
     cursor: pointer;
-    transition: background-color 0.2s;
 }
-.cart-form button:hover {
+.result-box button:hover {
     background-color: #0097a7;
-}
-
-/* 検索結果がない場合 */
-.no-result {
-    text-align: center;
-    padding: 20px;
-    color: #555;
 }

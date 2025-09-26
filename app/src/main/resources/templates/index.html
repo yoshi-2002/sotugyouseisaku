@@ -97,54 +97,35 @@
 <header class="under-header">
     <div class="header-left">商品一覧</div>
 </header>
-<div class="result-box">
-    <table border="1">
-        <thead>
-            <tr>
-                <th>商品ID</th>
-                <th>商品名</th>
-                <th>状態</th>
-                <th>価格</th>
-                <th>在庫数</th>
-                <th>メーカー</th>
-                <th>カテゴリ</th>
-                <th>画像</th>
-                <th>購入</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr th:if="${#lists.isEmpty(productViewResultListDTO.productViewList)}">
-                <td colspan="10" style="text-align:center;">
-                    検索条件に該当する商品は存在しませんでした。
-                </td>
-            </tr>
-            
-            <!-- ★変更: 商品行に data-id を付与,商品行に title 属性を追加 -->
-            <tr th:each="product : ${productViewResultListDTO.productViewList}" 
-                th:attr="data-id=${product.id}, title='クリックで詳細ページへ'" 
-                class="clickable-row">
-                <td th:text="${product.id}"></td>
-                <td th:text="${product.name}"></td>
-                <td th:text="${product.jyoutai}"></td>
-                <td th:text="${#numbers.formatInteger(product.price, 3, 'COMMA')}"></td>
-                <td th:text="${product.stock}"></td>
-                <td th:text="${product.maker}"></td>
-                <td th:text="${product.category}"></td>
-                <td>
-                    <img th:if="${product.imageUrl != null}" th:src="${product.imageUrl}" alt="商品画像" width="300">
-                    <span th:if="${product.imageUrl == null}">画像なし</span>
-                </td>
-                <td>
-                    <form th:action="@{/cart/add}" method="post">
-                        <input type="hidden" name="productId" th:value="${product.id}">
-                        <button type="submit">カートへ追加</button>
-                    </form>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-</div>
 
+<div class="result-box">
+    <!-- 商品がない場合 -->
+    <div th:if="${#lists.isEmpty(productViewResultListDTO.productViewList)}" class="no-result">
+        検索条件に該当する商品は存在しませんでした。
+    </div>
+
+    <!-- 商品カード一覧 -->
+    <div class="card-grid">
+        <div th:each="product : ${productViewResultListDTO.productViewList}" 
+             th:attr="data-id=${product.id}, title='クリックで詳細ページへ'" 
+             class="product-card clickable-card">
+            <img th:if="${product.imageUrl != null}" th:src="${product.imageUrl}" alt="商品画像">
+            <div th:if="${product.imageUrl == null}" class="no-image">画像なし</div>
+            
+            <h3 th:text="${product.name}"></h3>
+            <p><strong>価格:</strong> <span th:text="${#numbers.formatInteger(product.price, 3, 'COMMA')}"></span> 円</p>
+            <p><strong>状態:</strong> <span th:text="${product.jyoutai}"></span></p>
+            <p><strong>在庫:</strong> <span th:text="${product.stock}"></span></p>
+            <p><strong>メーカー:</strong> <span th:text="${product.maker}"></span></p>
+            <p><strong>カテゴリ:</strong> <span th:text="${product.category}"></span></p>
+
+            <form th:action="@{/cart/add}" method="post" class="cart-form">
+                <input type="hidden" name="productId" th:value="${product.id}">
+                <button type="submit">カートへ追加</button>
+            </form>
+        </div>
+    </div>
+</div>
 
 <script type="text/javascript" th:src="@{/js/index.js}"></script>
 </body>

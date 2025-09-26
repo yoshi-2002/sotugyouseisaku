@@ -25,13 +25,21 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     }
 
-    // 商品行クリックで詳細ページへ遷移
-    const rows = document.querySelectorAll(".clickable-row");
-    rows.forEach(function(row) {
-        row.addEventListener("click", function() {
-            const productId = row.getAttribute("data-id");
+    // 商品カードクリックで詳細ページへ遷移
+    const cards = document.querySelectorAll(".clickable-card");
+    cards.forEach(function(card) {
+        card.addEventListener("click", function(e) {
+            // カートボタンを押した場合は無視する
+            if (e.target.tagName.toLowerCase() === "button" || e.target.closest("form")) {
+                return;
+            }
+
+            const productId = card.getAttribute("data-id");
             if (productId) {
-                window.location.href = "/detail?id=" + productId; // idに合わせる
+                // ★URLパターンに合わせる
+                window.location.href = "/detail?id=" + productId;
+                // もしControllerが /product/detail/{id} 形式なら↓
+                // window.location.href = "/product/detail/" + productId;
             }
         });
     });

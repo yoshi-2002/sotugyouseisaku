@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <title>商品詳細</title>
-  <link rel="stylesheet" th:href="@{/css/index.css}">
+  <link rel="stylesheet" th:href="@{/css/detail.css}">
 </head>
 <body>
 
@@ -12,56 +12,34 @@
 </header>
 
 <div class="result-box">
-    <table border="1">
-        <tr>
-            <th>商品ID</th>
-            <td th:text="${product.id}"></td>
-        </tr>
-        <tr>
-            <th>商品名</th>
-            <td th:text="${product.name}"></td>
-        </tr>
-        <tr>
-            <th>状態</th>
-            <td th:text="${product.jyoutai}"></td>
-        </tr>
-        <tr>
-            <th>商品説明</th>
-            <td th:text="${product.description}"></td>
-        </tr>
-        <tr>
-            <th>価格</th>
-            <td th:text="${#numbers.formatInteger(product.price, 3, 'COMMA')}"></td>
-        </tr>
-        <tr>
-            <th>在庫数</th>
-            <td th:text="${product.stock}"></td>
-        </tr>
-        <tr>
-            <th>メーカー</th>
-            <td th:text="${product.maker}"></td>
-        </tr>
-        <tr>
-            <th>カテゴリ</th>
-            <td th:text="${product.category}"></td>
-        </tr>
-        <tr>
-            <th>画像</th>
-            <td>
-                <img th:if="${product.imageUrl != null}" th:src="${product.imageUrl}" alt="商品画像" width="400">
-                <span th:if="${product.imageUrl == null}">画像なし</span>
-            </td>
-        </tr>
-    </table>
+    <div class="product-detail">
+        <!-- 左に画像 -->
+        <div class="product-image">
+            <img th:if="${product.imageUrl != null}" th:src="${product.imageUrl}" alt="商品画像">
+            <span th:if="${product.imageUrl == null}">画像なし</span>
+        </div>
 
-    <!-- カート追加ボタン -->
-    <form th:action="@{/cart/add}" method="post">
-        <input type="hidden" name="productId" th:value="${product.id}">
-        <button type="submit">カートへ追加</button>
-    </form>
+        <!-- 右に情報 -->
+        <div class="product-info">
+            <h2 class="product-name" th:text="${product.name}">商品名</h2>
+            <div><strong>商品ID:</strong> <span th:text="${product.id}"></span></div>
+            <div><strong>状態:</strong> <span th:text="${product.jyoutai}"></span></div>
+            <div><strong>商品説明:</strong> <span th:text="${product.description}"></span></div>
+            <div><strong>価格:</strong> <span th:text="${#numbers.formatInteger(product.price, 3, 'COMMA')}"></span> 円</div>
+            <div><strong>在庫数:</strong> <span th:text="${product.stock}"></span></div>
+            <div><strong>メーカー:</strong> <span th:text="${product.maker}"></span></div>
+            <div><strong>カテゴリ:</strong> <span th:text="${product.category}"></span></div>
 
-    <!-- 一覧へ戻る -->
-    <p><a th:href="@{/index}">← 商品一覧に戻る</a></p>
+            <!-- カート追加ボタン -->
+            <form th:action="@{/cart/add}" method="post">
+                <input type="hidden" name="productId" th:value="${product.id}">
+                <button type="submit">カートへ追加</button>
+            </form>
+
+            <!-- 一覧へ戻る -->
+            <p><a th:href="@{/index}">← 商品一覧に戻る</a></p>
+        </div>
+    </div>
 </div>
 
 </body>

@@ -24,29 +24,33 @@ body {
     gap: 30px;
 }
 .button-group .mypage-button {
-    font-size: 0.6em; /* 元サイズに戻す */
+    font-size: 0.6em;
     text-decoration: none;
-    padding: 5px 12px; /* 元サイズに戻す */
+    padding: 5px 12px;
     background-color: #4caf50;
     border-radius: 10px;
     color: white;
 }
 .button-group .cart-button {
-    font-size: 0.6em; /* 元サイズに戻す */
+    font-size: 0.6em;
     text-decoration: none;
-    padding: 5px 12px; /* 元サイズに戻す */
+    padding: 5px 12px;
     background-color: #ff5722;
     color: white;
     border-radius: 10px;
 }
 
-/* カートコンテナ */
+/* カートコンテナ：カードを横並びに */
 .cart-container {
     margin: 20px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 20px;
 }
 
 /* 空カート */
 .empty-cart {
+    grid-column: 1 / -1; /* 横幅全部を占有 */
     text-align: center;
     font-size: 1.2em;
     color: #555;
@@ -55,32 +59,43 @@ body {
 /* カード形式 */
 .cart-item-card {
     display: flex;
-    gap: 20px;
+    flex-direction: column; /* 画像＋情報を縦に積む */
     background-color: #fff;
     padding: 15px;
     border-radius: 8px;
-    margin-bottom: 15px;
     box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+.cart-item-card:hover {
+    transform: scale(1.03);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
 }
 
 /* 画像 */
 .cart-item-image img {
-    width: 225px;
+    width: 100%;
+    max-width: 225px;
     height: auto;
     object-fit: contain;
     border-radius: 6px;
+    margin-bottom: 10px;
 }
 
 /* 商品情報 */
 .cart-item-info {
-    flex: 1;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
 }
 .cart-item-info h2 {
     margin: 0 0 10px 0;
-    font-size: 1.4em;
+    font-size: 1.2em;
+    text-align: center;
+}
+.cart-item-info div {
+    font-size: 0.95em;
+    margin-bottom: 5px;
+    text-align: center;
 }
 
 /* 削除ボタン */
@@ -92,6 +107,7 @@ body {
     border-radius: 6px;
     cursor: pointer;
     transition: background-color 0.2s;
+    align-self: center;
 }
 .cart-item-info button:hover {
     background-color: #d32f2f;
@@ -99,6 +115,7 @@ body {
 
 /* カート下部 */
 .cart-footer {
+    grid-column: 1 / -1; /* 全幅 */
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -116,7 +133,7 @@ body {
     margin-top: 10px;
 }
 .order-button {
-    padding: 12px 24px; /* 少し大きめに調整 */
+    padding: 12px 24px;
     font-size: 1em;
     background-color: #00bcd4;
     color: white;
@@ -133,6 +150,9 @@ body {
 
 /* レスポンシブ */
 @media (max-width: 700px) {
+    .cart-container {
+        grid-template-columns: 1fr;
+    }
     .cart-item-card {
         flex-direction: column;
         align-items: center;

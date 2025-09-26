@@ -6,114 +6,83 @@
   <link rel="stylesheet" th:href="@{/css/mypage.css}">
 </head>
 <body>
-  <h1 class="site-title">
-      <span>👤 マイページ</span>
 
-      <!-- ボタンをまとめるラッパー -->
-      <div class="button-group">
-          <a th:href="@{/cart}" title="カートに移動" class="mypage-button">カートに移動🛒</a>
-          <a th:href="@{/index}" title="ショップに移動" class="cart-button">ショップに移動🛒</a>
-      </div>
-  </h1>
+<h1 class="site-title">
+    <span>👤 マイページ</span>
 
-  <!-- カート内商品一覧 -->
-  <header>
-    <div class="header-top">カート情報</div>
-  </header>
-  <div class="result-box">
-    <table border="1">
-      <thead>
-        <tr>
-          <th>カートID</th>
-          <th>商品ID</th>
-          <th>商品名</th>
-          <th>価格</th>
-          <th>数量</th>
-          <th>メーカー</th>
-          <th>カテゴリ</th>
-          <th>画像</th>
-          <th>取り消し</th>
-        </tr>
-      </thead>
-      <tbody>
-        <!-- カートが空の場合 -->
-        <tr th:if="${#lists.isEmpty(cartViewResultListDTO.cartViewList)}">
-          <td colspan="8" style="text-align:center;">
-            カートに商品は入っていません。
-          </td>
-        </tr>
-
-        <!-- カートに商品がある場合 -->
-        <tr th:each="item : ${cartViewResultListDTO.cartViewList}">
-          <td th:text="${item.cartId}"></td>
-          <td th:text="${item.productId}"></td>
-          <td th:text="${item.productName}"></td>
-          <td th:text="${#numbers.formatInteger(item.price, 3, 'COMMA')}"></td> 
-          <td th:text="${item.quantity}"></td>
-          <td th:text="${item.maker}"></td>
-          <td th:text="${item.category}"></td>
-          <td>
-            <img th:if="${item.imageUrl != null}" th:src="${item.imageUrl}" alt="商品画像" width="150">
-            <span th:if="${item.imageUrl == null}">画像なし</span>
-          </td>
-          <td>
-            <form th:action="@{/myPage/cart/delete}" method="post">
-              <!-- この商品の cartId を送る -->
-              <input type="hidden" name="cartId" th:value="${item.cartId}">
-              <button type="submit">カートから削除</button>
-            </form>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-    <!-- ここにリンクを追加 -->
-    <div style="margin-top: 10px; text-align: right;">
-      <a th:href="@{/cart}" class="cart-button">購入する場合はカート画面へ</a>
+    <!-- ボタンをまとめるラッパー -->
+    <div class="button-group">
+        <a th:href="@{/cart}" title="カートに移動" class="mypage-button">カートに移動🛒</a>
+        <a th:href="@{/index}" title="ショップに移動" class="cart-button">ショップに移動🛒</a>
     </div>
-  </div>
+</h1>
 
-  <!-- 購入履歴一覧 -->
-  <header>
-    <div class="header-top">注文内容</div>
-  </header>
-  <div class="result-box">
-    <table border="1">
-      <thead>
-        <tr>
-          <th>注文ID</th>
-          <th>商品ID</th>
-          <th>商品名</th>
-          <th>価格</th>
-          <th>数量</th>
-          <th>メーカー</th>
-          <th>カテゴリ</th>
-          <th>画像</th>
-        </tr>
-      </thead>
-      <tbody>
-        <!-- 購入履歴が空の場合 -->
-        <tr th:if="${#lists.isEmpty(buyViewResultListDTO.buyViewList)}">
-          <td colspan="8" style="text-align:center;">
-            注文中の商品はありません。
-          </td>
-        </tr>
+<!-- カート情報 -->
+<header class="under-header">
+    <div class="header-left">カート情報</div>
+</header>
+<div class="result-box mypage-container">
 
-        <!-- 購入履歴がある場合 -->
-        <tr th:each="item : ${buyViewResultListDTO.buyViewList}">
-          <td th:text="${item.buyId}"></td>
-          <td th:text="${item.productId}"></td>
-          <td th:text="${item.productName}"></td>
-          <td th:text="${item.price}"></td>
-          <td th:text="${item.quantity}"></td>
-          <td th:text="${item.maker}"></td>
-          <td th:text="${item.category}"></td>
-          <td>
-            <img th:if="${item.imageUrl != null}" th:src="${item.imageUrl}" alt="商品画像" width="150">
-            <span th:if="${item.imageUrl == null}">画像なし</span>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
+    <!-- カートが空の場合 -->
+    <div th:if="${#lists.isEmpty(cartViewResultListDTO.cartViewList)}" class="empty-section">
+        カートに商品は入っていません。
+    </div>
+
+    <!-- カート商品カード -->
+    <div class="card-grid">
+        <div th:each="item : ${cartViewResultListDTO.cartViewList}" class="mypage-item-card">
+            <div class="mypage-item-image">
+                <img th:if="${item.imageUrl != null}" th:src="${item.imageUrl}" alt="商品画像">
+                <div th:if="${item.imageUrl == null}" class="no-image">画像なし</div>
+            </div>
+            <div class="mypage-item-info">
+                <h3 th:text="${item.productName}">商品名</h3>
+                <p><strong>価格:</strong> <span th:text="${#numbers.formatInteger(item.price, 3, 'COMMA')}"></span> 円</p>
+                <p><strong>個数:</strong> <span th:text="${item.quantity}"></span></p>
+                <p><strong>メーカー:</strong> <span th:text="${item.maker}"></span></p>
+                <p><strong>カテゴリ:</strong> <span th:text="${item.category}"></span></p>
+                <form th:action="@{/myPage/cart/delete}" method="post">
+                    <input type="hidden" name="cartId" th:value="${item.cartId}">
+                    <button type="submit">カートから削除</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- カート画面へのリンク -->
+    <div style="margin-top: 10px; text-align: right;">
+        <a th:href="@{/cart}" class="cart-button">購入する場合はカート画面へ</a>
+    </div>
+</div>
+
+<!-- 注文内容 -->
+<header class="under-header">
+    <div class="header-left">注文内容</div>
+</header>
+<div class="result-box mypage-container">
+
+    <!-- 注文履歴が空の場合 -->
+    <div th:if="${#lists.isEmpty(buyViewResultListDTO.buyViewList)}" class="empty-section">
+        注文中の商品はありません。
+    </div>
+
+    <!-- 注文履歴カード -->
+    <div class="card-grid">
+        <div th:each="item : ${buyViewResultListDTO.buyViewList}" class="mypage-item-card">
+            <div class="mypage-item-image">
+                <img th:if="${item.imageUrl != null}" th:src="${item.imageUrl}" alt="商品画像">
+                <div th:if="${item.imageUrl == null}" class="no-image">画像なし</div>
+            </div>
+            <div class="mypage-item-info">
+                <h3 th:text="${item.productName}">商品名</h3>
+                <p><strong>価格:</strong> <span th:text="${#numbers.formatInteger(item.price, 3, 'COMMA')}"></span> 円</p>
+                <p><strong>個数:</strong> <span th:text="${item.quantity}"></span></p>
+                <p><strong>メーカー:</strong> <span th:text="${item.maker}"></span></p>
+                <p><strong>カテゴリ:</strong> <span th:text="${item.category}"></span></p>
+            </div>
+        </div>
+    </div>
+</div>
+
 </body>
 </html>

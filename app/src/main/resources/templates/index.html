@@ -120,7 +120,9 @@
                 </td>
             </tr>
             
-            <tr th:each="product : ${productViewResultListDTO.productViewList}">
+            <!-- 変更: 商品行に data-id を付与 -->
+            <tr th:each="product : ${productViewResultListDTO.productViewList}" 
+                th:attr="data-id=${product.id}" class="clickable-row">
                 <td th:text="${product.id}"></td>
                 <td th:text="${product.name}"></td>
                 <td th:text="${product.jyoutai}"></td>
@@ -143,6 +145,7 @@
         </tbody>
     </table>
 </div>
+
 
 <script type="text/javascript" th:src="@{/js/index.js}"></script>
 </body>
